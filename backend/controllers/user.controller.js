@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const asyncHandler = require('express-async-handler');
 const User = require('../models/user.model');
 
-const registerUser = async (req, res) => {
+const registerUser = asyncHandler(async (req, res) => {
 	const { name, email, password } = req.body;
 
 	if (!name || !email || !password) {
@@ -11,9 +11,9 @@ const registerUser = async (req, res) => {
 		throw new Error('please fill all fields.');
 	}
 
-	const exists = await User.findOne({ email });
+	const Userexists = await User.findOne({ email });
 
-	if (exists) {
+	if (Userexists) {
 		res.status(400);
 		throw new Error('user exists.');
 	}
@@ -22,10 +22,10 @@ const registerUser = async (req, res) => {
 	const salt = await bcrypt.genSalt(10);
 	const hashPassword = await bcrypt.hash(password, salt);
 
-	const user = User.create({
+	const user = await User.create({
 		name,
 		email,
-		password,
+		password: hashPassword,
 	});
 
 	if (user) {
@@ -33,13 +33,15 @@ const registerUser = async (req, res) => {
 			_id: user.id,
 			name: user.name,
 			email: user.email,
+			token: generateToken(user._id),
 		});
 	} else {
+		res.status(400);
 		throw new Error('invalid user details');
 	}
-};
+});
 
-const loginrUser = async (req, res) => {
+const loginUser = asyncHandler(async (req, res) => {
 	const { email, password } = req.body;
 
 	const user = await User.findOne({ email });
@@ -49,19 +51,31 @@ const loginrUser = async (req, res) => {
 			_id: user.id,
 			name: user.name,
 			email: user.email,
+			token: generateToken(user._id),
 		});
 	} else {
 		throw new Error('invalid credentials');
 	}
-	res.json({ message: 'user login' });
-};
+});
+
+const generateToken = (id) => {
+	return jwt.sign({ id }, process.env.JWT, {expiresIn: '30d'})
+}
 
 const getUser = async (req, res) => {
-	res.json({ message: 'get user' });
+	const { _id, name, email } = await User.findById(req.user.id)
+
+	res.status(200).json({
+		id: _id,
+		name,
+		email,
+	})
+
+	// res.json({ message: 'get user' });
 };
 
 module.exports = {
 	registerUser,
-	loginrUser,
+	loginUser,
 	getUser,
 };
