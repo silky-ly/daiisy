@@ -1,0 +1,61 @@
+@tailwind base;
+
+@layer base {
+	* {
+		@apply m-0 p-0 box-border;
+	}
+
+	@font-face {
+		font-family: 'JetBrainsMono';
+		src: url('../fonts/JetBrains/JetBrainsMono.ttf') format('truetype');
+	}
+
+	h3 {
+		@apply w-3/5 text-2xl font-semibold mb-8 text-left;
+	}
+
+	h4 {
+		@apply text-sm font-normal uppercase tracking-wide mb-8 text-center;
+	}
+
+	img {
+		@apply w-full h-full object-cover;
+	}
+
+	botton {
+		@apply relative;
+	}
+}
+
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+	.sub-head-p {
+		@apply mb-8 uppercase text-2xl font-semibold tracking-wider leading-8;
+	}
+
+	.auth {
+		@apply grid grid-cols-2;
+	}
+
+	.flex-column {
+		@apply w-full h-screen flex flex-col justify-center items-center;
+	}
+
+	.flex-rowed {
+		@apply;
+	}
+
+	.btn-primary {
+		@apply w-full h-12 text-white text-sm uppercase tracking-widest bg-blue-800 before:bg-violet-300;
+	}
+
+	.btn-shop {
+		@apply block relative w-full h-14 text-white text-xs font-extralight uppercase tracking-wider bg-black before:bg-violet-300 before:content-["_"] before:inset-0  before:absolute before:scale-x-0 before:origin-bottom-right before:transition-all before:ease-in-out before:duration-200 before:z-[-1] hover:before:scale-x-100 hover:before:origin-bottom-left;
+	}
+
+	.input {
+		@apply mb-5 h-12 pl-3 text-xs border;
+	}
+}
