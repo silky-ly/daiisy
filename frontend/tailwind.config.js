@@ -360,6 +360,10 @@ module.exports = {
 				'monospace',
 			],
 			jetbrains: ['JetBrainsMono'],
+			epilougue: [''],
+			outfit: ['Outfit'],
+			opposit: ['Opposit'],
+			manrope: ['Manrope'],
 		},
 		fontSize: {
 			xxs: ['0.6rem', { lineHeight: '0.75rem' }],

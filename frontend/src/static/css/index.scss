@@ -4,10 +4,25 @@
 	* {
 		@apply m-0 p-0 box-border;
 	}
-
+	
 	@font-face {
 		font-family: 'JetBrainsMono';
 		src: url('../fonts/JetBrains/JetBrainsMono.ttf') format('truetype');
+	}
+
+	@font-face {
+		font-family: 'Manrope';
+		src: url('../fonts/Manrope.ttf') format('truetype');
+	}
+
+	@font-face {
+		font-family: 'Opposit';
+		src: url('../fonts/Opposit.ttf') format('truetype');
+	}
+
+	@font-face {
+		font-family: 'Outfit';
+		src: url('../fonts/Outfit.ttf') format('truetype');
 	}
 
 	h3 {
@@ -15,24 +30,22 @@
 	}
 
 	h4 {
-		@apply text-sm font-normal uppercase tracking-wide mb-8 text-center;
+		@apply text-sm font-opposit font-thin uppercase tracking-widest mb-8 text-center;
 	}
 
 	img {
-		@apply w-full h-full object-cover;
+		@apply w-full h-full block object-cover;
 	}
-
-	botton {
-		@apply relative;
-	}
+	// img {
+	// 	@apply max-w-full max-h-full m-auto block object-cover;
+	// }
 }
 
 @tailwind components;
-@tailwind utilities;
 
 @layer components {
 	.sub-head-p {
-		@apply mb-8 uppercase text-2xl font-semibold tracking-wider leading-8;
+		@apply mb-8 uppercase text-3xl font-[900] tracking-wider leading-8;
 	}
 
 	.auth {
@@ -52,10 +65,12 @@
 	}
 
 	.btn-shop {
-		@apply block relative w-full h-14 text-white text-xs font-extralight uppercase tracking-wider bg-black before:bg-violet-300 before:content-["_"] before:inset-0  before:absolute before:scale-x-0 before:origin-bottom-right before:transition-all before:ease-in-out before:duration-200 before:z-[-1] hover:before:scale-x-100 hover:before:origin-bottom-left;
+		@apply before:block relative w-full h-14 text-white text-xs font-semibold uppercase tracking-wider bg-black;
 	}
 
 	.input {
 		@apply mb-5 h-12 pl-3 text-xs border;
 	}
 }
+
+@tailwind utilities;

@@ -1,28 +1,21 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
-import { getProductById } from '../../features/todos/product.slice';
+import { getProductById } from '../../features/products/product.slice';
 import Layout from '../../layouts/Layout';
-
 
 const Product = () => {
 	const dispatch = useDispatch();
 
-	const {
-		isLoading,
-		isSuccess,
-		isError,
-		message,
-		product = { reviews: [] },
-	} = useSelector((state) => state.products);
+	const { id } = useParams();
 
-	console.log(product, 'product');
+	const { product = {} } = useSelector((state) => state.products);
 
 	useEffect(() => {
 		dispatch(getProductById(id));
 	}, [dispatch]);
 
-	const { id } = useParams();
+	console.log(id, 'id');
 
 	return (
 		<Layout>

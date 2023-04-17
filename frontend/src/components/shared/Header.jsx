@@ -3,16 +3,15 @@ const Header = () => {
 		<nav className='w-full m-auto p-6 px-24 bg-white flex justify-between'>
 			<div className='nav-wrap w-3/4 flex justify-between'>
 				{[
-					['Shop', '/shop'],
-					['', ''],
-					['Daisy', '/'],
-					['Cart', '/cart'],
-					['About', '/about'],
+					['shop', '/shop'],
+					['blog', '/'],
+					['cart', '/cart'],
+					['about', '/about'],
 				].map(([title, path], index) => (
 					<a
 						key={index}
 						href={path}
-						className='uppercase text-xs font-semibold tracking-wider cursor-pointer'
+						className='uppercase text-xs font-semibold font-opposit tracking-wider cursor-pointer relative before:content-["_"] before:absolute before:w-full before:h-[0.5px] pb-1 before:bg-black before:left-0 before:bottom-0 before:origin-right before:scale-x-0 before:transition-transform before:duration-300 before:ease-in-out hover:before:origin-left hover:before:scale-x-100'
 					>
 						{title}
 					</a>
@@ -20,7 +19,7 @@ const Header = () => {
 			</div>
 
 			<div className='link-wrap w-1/12 flex justify-around'>
-      <a href='' className='text-xs font-semibold cursor-pointer'>
+				<a href='' className='text-xs font-semibold cursor-pointer'>
 					<svg
 						xmlns='http://www.w3.org/2000/svg'
 						width='15'
@@ -33,7 +32,7 @@ const Header = () => {
 						/>
 					</svg>
 				</a>
-        
+
 				<a href='' className='text-xs font-semibold cursor-pointer'>
 					<svg
 						xmlns='http://www.w3.org/2000/svg'

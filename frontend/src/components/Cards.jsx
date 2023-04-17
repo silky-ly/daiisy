@@ -11,16 +11,16 @@ const Card = ({ product }) => {
 						{product.category}
 					</p>
 
-					<p className='text-xs font-semibold uppercase tracking-wide leading-6'>
+					<p className='text-xs font-semibold uppercase tracking-wide leading-6 font-opposit'>
 						{product.name}
 					</p>
 
-					<p className=' text-xs font-semibold uppercase tracking-wide leading-6'>
+					<p className=' text-xs font-semibold uppercase tracking-wide leading-6 font-opposit'>
 						{`$ ${product.price}`}
 					</p>
 				</div>
 
-				<button className='btn-shop'>add to bag</button>
+				<button className='btn-shop font-opposit'>add to bag</button>
 			</div>
 		</Link>
 	);
