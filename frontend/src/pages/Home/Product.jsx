@@ -9,48 +9,58 @@ const Product = () => {
 
 	const { id } = useParams();
 
-	const { product = {} } = useSelector((state) => state.products);
-
 	useEffect(() => {
+		console.log(id, 'id');
 		dispatch(getProductById(id));
-	}, [dispatch]);
+	}, [id]);
 
-	console.log(id, 'id');
+	const product = useSelector((state) => {
+		console.log(state, 'state');
+		return state.products.product;
+	});
+
+	console.log(product, '...product');
+
+	// console.log(state, 'state');
+
+	// console.log(id, 'id');
 
 	return (
 		<Layout>
 			<section className='product h-auto w-11/12 m-auto mt-5 grid grid-cols-2 gap-16 bg-indigo-400'>
 				<div className='bg-purple-500'>
-					<img src={product.image} />
+					<img src={product?.image} />
 
 					<div className='carousel'>hhhsgvsgxdv</div>
 				</div>
 
 				<div className='py-8 px-10 bg-blue-100'>
 					<p className='text-sm font-normal uppercase tracking-wide leading-6'>
-						{product.caption}
+						{product?.brand} brand
 					</p>
 					<p className='text-sm font-semibold uppercase tracking-wide leading-6'>
-						{product.name}
+						{product?.name}
 					</p>
 
 					<span className='block my-8 text-xs font-light'>
-						{product.narration}
+						{product?.narration}
 					</span>
 
 					<p className='my-5 text-lg font-semibold uppercase tracking-wide'>
-						$ {product.price}
+						$ {product?.price}
 					</p>
 
 					<p className='mb-5 text-xs font-normal tracking-wide text-slate-500'>
-						{product.countInStock > 0 ? 'In Stock' : 'Out of stock'}
+						{product?.countInStock > 0
+							? 'In Stock'
+							: 'Out of stock'}
 					</p>
 
 					<div className='w-2/4 grid grid-cols-3 gap-1'>
 						<button className='btn-shop'>1</button>
 						<button
 							className='btn-shop col-span-2'
-							disabled={product.countInStock === 0}
+							disabled={product?.countInStock === 0}
 						>
 							add to bag
 						</button>
@@ -63,7 +73,7 @@ const Product = () => {
 								to='/skincare'
 								className='font-light text-blue-700'
 							>
-								{product.category}
+								{product?.category}
 							</Link>{' '}
 						</span>
 						<span className='block text-xs font-normal'>
@@ -72,7 +82,7 @@ const Product = () => {
 								href='https://versedskin.com'
 								className='font-light text-blue-700'
 							>
-								{product.brand}
+								{product?.brand}
 							</a>{' '}
 						</span>
 					</div>
@@ -81,7 +91,7 @@ const Product = () => {
 
 					<div>
 						<p className='text-xs font-light leading-6'>
-							{product.description}
+							{product?.description}
 						</p>
 
 						<ul className='my-8'>

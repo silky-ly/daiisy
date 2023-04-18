@@ -1,6 +1,5 @@
-import { createAsyncThunk, createSlice, current } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import productService from '../../services/product.service';
-import { createSelector } from 'reselect';
 
 export const getProducts = createAsyncThunk(
 	'/products',
@@ -38,6 +37,7 @@ export const getProductById = createAsyncThunk(
 
 const initialState = {
 	products: [],
+	product: {},
 	isLoading: 'false',
 	isSuccess: 'false',
 	isError: 'false',
@@ -71,12 +71,12 @@ const productSlice = createSlice({
 			.addCase(getProductById.fulfilled, (state, action) => {
 				state.isLoading = false;
 				state.isSuccess = true;
-				// state.message = action.payload;
-				const product = state.products.filter((p) => {
-					p._id === action.payload.id;
-					console.log(current(p), 'pto');
-				});
-				state[product] = {...state[product], ...action.payload}
+				state.product = action.payload;
+				// const product = state.products.filter((p) => {
+				// 	p._id === action.payload.id;
+				// 	console.log(current(p), 'pto');
+				// });
+				// state[product] = {...state[product], ...action.payload}
 
 				// const now = (state) => state.products;
 				// const selected = createSelector(now, (products) =>
