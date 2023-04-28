@@ -21,22 +21,18 @@ const Product = () => {
 
 	console.log(product, '...product');
 
-	// console.log(state, 'state');
-
-	// console.log(id, 'id');
-
 	return (
 		<Layout>
-			<section className='product h-auto w-11/12 m-auto mt-5 grid grid-cols-2 gap-16 bg-indigo-400'>
-				<div className='bg-purple-500'>
-					<img src={product?.image} />
+			<section className='product h-auto w-11/12 m-auto mt-5 grid grid-cols-2 gap-16 border-indigo-400'>
+				<div className='h-full'>
+					<img src={product?.image} className='' />
 
 					<div className='carousel'>hhhsgvsgxdv</div>
 				</div>
 
 				<div className='py-8 px-10 bg-blue-100'>
 					<p className='text-sm font-normal uppercase tracking-wide leading-6'>
-						{product?.brand} brand
+						{product?.caption}
 					</p>
 					<p className='text-sm font-semibold uppercase tracking-wide leading-6'>
 						{product?.name}
@@ -71,7 +67,7 @@ const Product = () => {
 							category:{' '}
 							<Link
 								to='/skincare'
-								className='font-light text-blue-700'
+								className='font-light text-black font-semibold'
 							>
 								{product?.category}
 							</Link>{' '}
@@ -80,7 +76,7 @@ const Product = () => {
 							brand:{' '}
 							<a
 								href='https://versedskin.com'
-								className='font-light text-blue-700'
+								className='font-light text-black font-semibold'
 							>
 								{product?.brand}
 							</a>{' '}
