@@ -1,25 +1,37 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { getProductById } from '../../features/products/product.slice';
+import { decrement, increment } from '../../features/counter/counter.slice';
+import { addItem } from '../../features/cart/cart.slice';
 import Layout from '../../layouts/Layout';
 
 const Product = () => {
+	const navigate = useNavigate();
+
 	const dispatch = useDispatch();
-
-	const { id } = useParams();
-
-	useEffect(() => {
-		console.log(id, 'id');
-		dispatch(getProductById(id));
-	}, [id]);
 
 	const product = useSelector((state) => {
 		console.log(state, 'state');
 		return state.products.product;
 	});
 
-	console.log(product, '...product');
+	const { count } = useSelector((state) => state.counter);
+
+	const { id } = useParams();
+
+ 	useEffect(() => {
+		console.log(id, 'id');
+		dispatch(getProductById(id));
+	}, [id]);
+
+	const addToCartHandler = (product) => {
+		dispatch(addItem(product));
+
+		console.log(product, 'product by add to cart')
+
+		navigate(`/cart/${id}?qty=${count}`);
+	};
 
 	return (
 		<Layout>
@@ -52,15 +64,34 @@ const Product = () => {
 							: 'Out of stock'}
 					</p>
 
-					<div className='w-2/4 grid grid-cols-3 gap-1'>
-						<button className='btn-shop'>1</button>
-						<button
-							className='btn-shop col-span-2'
-							disabled={product?.countInStock === 0}
-						>
-							add to bag
-						</button>
-					</div>
+					{product?.countInStock > 0 && (
+						<div className='w-3/5 grid grid-cols-3 gap-1'>
+							<div className='flex justify-between items-center border-0.5 border-solid border-black px-4'>
+								<button
+									className=''
+									onClick={() => dispatch(decrement())}
+								>
+									-
+								</button>
+
+								<span className=''>{count}</span>
+
+								<button
+									className=''
+									onClick={() => dispatch(increment())}
+								>
+									+
+								</button>
+							</div>
+							<button
+								className='btn-shop col-span-2'
+								disabled={product?.countInStock === 0}
+								onClick={() => addToCartHandler(product)}
+							>
+								add to bag
+							</button>
+						</div>
+					)}
 
 					<div className='mt-8'>
 						<span className='block text-xs font-normal'>

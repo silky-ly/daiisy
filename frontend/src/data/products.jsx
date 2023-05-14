@@ -1,4 +1,4 @@
-const products = [
+export const products = [
 	{
 		_id: '1',
 		name: 'hydrating plumping mask',
@@ -73,4 +73,4 @@ const products = [
 	},
 ];
 
-export default products;
+export const headers = ['', 'price', 'quantity', 'total'];

@@ -3,6 +3,8 @@ import Register from './pages/auth/Register';
 import Login from './pages/auth/Login';
 import HomeScreen from './pages/Home/HomeScreen';
 import Product from './pages/Home/Product';
+import Cart from './pages/cart/Cart';
+import CheckOut from './pages/checkout/CheckOut';
 
 function App() {
 	return (
@@ -12,6 +14,9 @@ function App() {
 				<Route path='/login' element={<Login />} />
 				<Route path='/' element={<HomeScreen />} />
 				<Route path='/product/:id' element={<Product />} />
+				<Route path='/cart' element={<Cart />} />
+				<Route path='/checkout' element={<CheckOut />} />
+				{/* <Route path='/cart/:id' element={<Cart />} /> */}
 			</Routes>
 		</BrowserRouter>
 	);

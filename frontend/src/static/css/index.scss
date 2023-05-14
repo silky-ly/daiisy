@@ -4,7 +4,7 @@
 	* {
 		@apply m-0 p-0 box-border;
 	}
-	
+
 	@font-face {
 		font-family: 'JetBrainsMono';
 		src: url('../fonts/JetBrains/JetBrainsMono.ttf') format('truetype');
@@ -36,6 +36,26 @@
 	img {
 		@apply w-full h-full object-cover;
 	}
+
+	select {
+		@apply w-full h-12 mb-5;
+	}
+
+	input,
+	select {
+		@apply border-[#ccc] border-0.5 border-solid;
+	}
+
+	input::placeholder {
+		@apply tracking-wide text-xs text-zinc-500 capitalize;
+	}
+
+	select:focus,
+	input:focus {
+		@apply outline-none;
+		// border: 0.5px solid #253cac;
+	}
+
 	// img {
 	// 	@apply max-w-full max-h-full m-auto block object-cover;
 	// }
@@ -69,7 +89,7 @@
 	}
 
 	.input {
-		@apply mb-5 h-12 pl-3 text-xs border;
+		@apply mb-5 h-12 pl-3 text-xs border-[#ccc] border-0.5 border-solid;
 	}
 }
 
