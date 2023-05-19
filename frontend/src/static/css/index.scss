@@ -26,7 +26,7 @@
 	}
 
 	h3 {
-		@apply w-3/5 text-2xl font-semibold mb-8 text-left;
+		@apply w-3/5 text-2xl font-semibold mb-[30px] text-left;
 	}
 
 	h4 {
@@ -38,12 +38,18 @@
 	}
 
 	select {
-		@apply w-full h-12 mb-5;
+		@apply px-4 grid items-center;
+		grid-template-areas: 'select';
+		-webkit-appearance: none;
+		background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+		background-repeat: no-repeat;
+		background-position-x: 98%;
+		background-position-y: 15px;
 	}
 
 	input,
 	select {
-		@apply border-[#ccc] border-0.5 border-solid;
+		@apply w-full h-14 border-[#ccc] border-0.5 border-solid mb-8;
 	}
 
 	input::placeholder {
@@ -55,10 +61,6 @@
 		@apply outline-none;
 		// border: 0.5px solid #253cac;
 	}
-
-	// img {
-	// 	@apply max-w-full max-h-full m-auto block object-cover;
-	// }
 }
 
 @tailwind components;
@@ -88,8 +90,12 @@
 		@apply before:block relative w-full h-14 text-white text-xs font-semibold uppercase tracking-wider bg-black;
 	}
 
+	.line {
+		@apply my-8 w-full border-b-0.5 border-[#ccc];
+	}
+
 	.input {
-		@apply mb-5 h-12 pl-3 text-xs border-[#ccc] border-0.5 border-solid;
+		@apply pl-3 text-xs block mb-10;
 	}
 }
 

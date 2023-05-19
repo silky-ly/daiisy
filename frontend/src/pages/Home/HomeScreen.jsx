@@ -1,12 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Carousel } from '@mantine/carousel';
 import { rem } from '@mantine/core';
 import { EpArrowLeft, EpArrowRight } from '../../static/assets/svg/svg';
 import { getProducts } from '../../features/products/product.slice';
 import Layout from '../../layouts/Layout';
-import Card from '../../components/Cards';
-import lip from '../../static/assets/images/tang.jpg';
+import { Card } from '../../components/Cards';
+import lip from '../../static/assets/images/ppp.jpg';
+import berry from '../../static/assets/images/glow_strawberry.jpg';
 
 const HomeScreen = () => {
 	const dispatch = useDispatch();
@@ -113,33 +114,52 @@ const HomeScreen = () => {
 					</Carousel>
 				</div>
 
-				<div className='third mt-12 grid gap-10'>
-					<div className='grid grid-cols-2 grid-flow-col-dense'>
-						<div className='w-2/4 m-auto'>
+				<div className='third mt-20 grid bg-blue-500 h-full'>
+					{/* <h3>gvjjghvhj</h3> */}
+					<div className='grid grid-cols-2 bg-purple-700 h-5/6'>
+						<div className='m-auto bg-pink-500 border'>
 							<h5 className='font-semibold leading-8 text-xl'>
 								HIGH PERFORMANCE MEETS PURPOSE
 							</h5>
+
 							<p className='my-4 text-xs font-light tracking-widest leading-2'>
 								Clean, cruelty-free products, powered by proven
 								ingredients and tested by dermatologists.
 							</p>
 							<button className='btn-shop'>shop now</button>
 						</div>
-						{/* <img src={Two} className='' /> */}
+
+						<div className='m-auto bg-pink-500'>
+							{/* <img src={berry} className='' /> */}
+						</div>
 					</div>
 
-					<div className='grid grid-cols-2'>
-						<div className='w-2/4 m-auto'>
+					<div className='grid grid-cols-2 bg-green-700'>
+						<div className='w-2/4 m-auto bg-pink-500 border'>
 							<h5 className='font-semibold leading-8 text-xl'>
 								HIGH PERFORMANCE MEETS PURPOSE
 							</h5>
+
 							<p className='my-4 text-xs font-light tracking-widest leading-2'>
 								Clean, cruelty-free products, powered by proven
 								ingredients and tested by dermatologists.
 							</p>
 							<button className='btn-shop'>shop now</button>
 						</div>
-						{/* <img src={Two} className='' /> */}
+
+						<div className='w-2/4 m-auto bg-pink-500'>
+							<h5 className='font-semibold leading-8 text-xl'>
+								HIGH PERFORMANCE MEETS PURPOSE
+							</h5>
+
+							<p className='my-4 text-xs font-light tracking-widest leading-2'>
+								Clean, cruelty-free products, powered by proven
+								ingredients and tested by dermatologists.
+							</p>
+							<button className='btn-shop'>shop now</button>
+						</div>
+
+						{/* <img src={berry} className='' /> */}
 					</div>
 				</div>
 			</section>

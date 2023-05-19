@@ -1,15 +1,24 @@
-import { EpArrowLeft } from "../../static/assets/svg/svg";
+import { Link } from 'react-router-dom';
+import { Slip } from '../../components/Cards';
+import { EpArrowLeft } from '../../static/assets/svg/svg';
 
 const CheckOut = () => {
 	return (
 		<section className='checkout flex w-full p-10'>
 			<div className='w-3/5 px-14 border border-t-0 border-l-0 border-b-0 border-r-0.5 border-[#ccc]'>
-				<h3 className='font-jetbrains uppercase font-semibold tracking-wide text-lg bg-lime-300'>
+
+				<h4>shop daisy</h4>
+
+				<h4>express checkout</h4>
+
+				<div className='line'></div>
+				
+				<h3 className='font-jetbrains uppercase font-semibold tracking-wide text-lg'>
 					shipping address
 				</h3>
 
 				<form className=''>
-					<select className="">
+					<select className='input' placeholder='Pick one'>
 						<option>u</option>
 						<option>w</option>
 						<option>f</option>
@@ -17,6 +26,7 @@ const CheckOut = () => {
 
 					<div className='grid grid-cols-2 gap-5'>
 						<input
+							type='text'
 							name='firstname'
 							value=''
 							placeholder='first name'
@@ -24,6 +34,7 @@ const CheckOut = () => {
 						/>
 
 						<input
+							type='text'
 							name='lastname'
 							value=''
 							placeholder='last name'
@@ -32,6 +43,7 @@ const CheckOut = () => {
 					</div>
 
 					<input
+						type='text'
 						name='address'
 						value=''
 						placeholder='address'
@@ -40,13 +52,14 @@ const CheckOut = () => {
 
 					<div className='grid grid-cols-3 gap-3'>
 						<input
+							type='text'
 							name='address'
 							value=''
 							placeholder='address'
 							className='input'
 						/>
 
-						<select>
+						<select className='input'>
 							<option>u</option>
 							<option>w</option>
 							<option>f</option>
@@ -71,32 +84,45 @@ const CheckOut = () => {
 				</form>
 
 				<div className='flex justify-between items-center'>
-					<p className="w-24 text-xs flex justify-between items-center"><span>{<EpArrowLeft />}</span>return to cart</p>
+					<Link
+						to='/cart'
+						className='w-24 text-xs flex justify-between items-center cursor'
+					>
+						<span>{<EpArrowLeft />}</span>return to cart
+					</Link>
 
-					<button className='btn-shop w-2/6'>continue to shopping</button>
+					<button className='btn-shop w-2/6'>
+						continue to shopping
+					</button>
 				</div>
 			</div>
 
-			<div className='bg-red-400 w-2/5'>
-				<li>items</li>
+			<div className='w-2/5 pl-10 pr-24'>
+				<Slip />
 
-				<div className='line my-8 w-full border-b-0.5 border-black'></div>
+				<div className='line'></div>
 
-				<div className="flex justify-between bg-purple-300">
-					<p>subtotal</p>
-					<p>$9.99</p>
+				<div className='flex justify-between items-cente mb-3'>
+					<p className='capitalize text-[.8rem] text-[#444]'>
+						subtotal
+					</p>
+					<p className='text-xs'>$9.99</p>
 				</div>
 
-				<div className="bg-green-400 flex justify-between">
-					<p>shipping</p>
-					<p>calculatedat next step</p>
+				<div className='flex justify-between items-center'>
+					<p className='text-[.8rem] capitalize text-[#444]'>
+						shipping
+					</p>
+					<p className='text-[.7rem] tracking-tighter text-[#444]'>
+						calculated at next step
+					</p>
 				</div>
 
-				<div className='line my-8 w-full border-b-0.5 border-black'></div>
+				<div className='line'></div>
 
-				<div className="bg-purple-700 flex justify-between">
-					<p>total</p>
-					<p>$99.99</p>
+				<div className='flex justify-between items-center'>
+					<p className='text-sm text-[#444] capitalize'>total</p>
+					<p className='text-xl font-bold text-[#444]'>$99.99</p>
 				</div>
 			</div>
 		</section>
