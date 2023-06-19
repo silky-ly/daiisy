@@ -16,7 +16,7 @@ export const TableHead = ({ headers }) => {
 			{headers.map((header, index) => (
 				<th
 					key={index}
-					className='uppercase text-black py-6 font-normal text-sm first:col-span-2 first:bg-sky-400 second:bg-purple-800'
+					className='uppercase text-black py-6 font-normal text-sm first:col-span-2 first:bg-sky-400'
 				>
 					{header}
 				</th>
@@ -25,21 +25,22 @@ export const TableHead = ({ headers }) => {
 	);
 };
 
-export const CartData = ({ cartItems }) => {
-	return (
-		<tr className='w-full grid grid-cols-5 gap-5 items-center text-center p-6 border-b-0.5 border-solid border-black'>
-			{cartItems.map((cart, index) => (
-				<>
-					<td className=''>
-						<img src={cart.image} className='' />
-					</td>
-					<td className='font-bold capitalize font-opposit'>
-						{cart.name}
-					</td>
-					<td className='font-opposit'>{cart.price}</td>
-					<td className='font-opposit'>{cart.qty}</td>
-				</>
-			))}
+export const CartData = ({ cartItems, remove }) => {
+	return cartItems?.map((cart) => (
+		<tr
+			key={cart._id}
+			className='w-full grid grid-cols-5 gap-5 items-center text-center p-6 border-b-0.5 border-solid border-black'
+		>
+			<td className=''>
+				<img src={cart.image} alt={cart.image} className='' />
+			</td>
+			<td className=''>
+				<p className='font-bold capitalize font-opposit'>{cart.name}</p>{' '}
+				<button className='uppercase text-[0.6rem]' onClick={() => remove(cart)}>remove</button>
+			</td>
+			<td className='font-opposit'>{cart.price}</td>
+			<td className='font-opposit'>{cart.qty}</td>
+			<td className='font-opposit'>{cart.price * cart.qty}</td>
 		</tr>
-	);
+	));
 };

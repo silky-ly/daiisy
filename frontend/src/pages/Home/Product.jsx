@@ -12,7 +12,7 @@ const Product = () => {
 	const dispatch = useDispatch();
 
 	const product = useSelector((state) => {
-		console.log(state, 'state');
+		// console.log(state, 'state');
 		return state.products.product;
 	});
 
@@ -30,7 +30,8 @@ const Product = () => {
 
 		console.log(product, 'product by add to cart')
 
-		navigate(`/cart/${id}?qty=${count}`);
+		navigate(`/cart`);
+		// navigate(`/cart/${id}?qty=${count}`);
 	};
 
 	return (

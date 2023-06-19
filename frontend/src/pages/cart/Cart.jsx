@@ -1,10 +1,19 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { CartData, Table } from '../../components/TableHead';
 import { headers } from '../../data/products';
 import Layout from '../../layouts/Layout';
+import { removeItem } from '../../features/cart/cart.slice';
 
 const Cart = () => {
+	const dispatch = useDispatch();
+
 	const cart = useSelector((state) => state.cart);
+
+	console.log('CART::: ', cart, cart.cartItems);
+
+	const handleRemoveItem = (cartItem) => {
+		dispatch(removeItem(cartItem));
+	};
 
 	return (
 		<Layout>
@@ -16,11 +25,16 @@ const Cart = () => {
 				<div>
 					<Table
 						headers={headers}
-						data={<CartData cartItems={cart.cartItems} />}
+						data={
+							<CartData
+								cartItems={cart.cartItems}
+								remove={handleRemoveItem}
+							/>
+						}
 					/>
 				</div>
 
-				<div className='absolute right-5 mt-8 mb-16 w-3/6 text-end'>
+				<div className='cart-summary absolute right-5 mt-8 mb-16 w-3/6 text-end'>
 					<div className='flex items-baseline justify-end w-full'>
 						<p className='uppercase text-xs font-light text-right py-0 mr-2'>
 							subtotal
@@ -41,7 +55,7 @@ const Cart = () => {
 						</button>
 
 						<button className='btn-shop font-opposit hover:text-black hover:bg-white'>
-							checkout  
+							checkout
 						</button>
 					</div>
 				</div>
