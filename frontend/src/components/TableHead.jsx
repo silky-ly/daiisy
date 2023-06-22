@@ -1,6 +1,3 @@
-import { useDispatch } from "react-redux";
-import { decrement, increment } from "../features/counter/counter.slice";
-
 export const Table = ({ headers, data }) => {
 	return (
 		<table className='block'>
@@ -15,11 +12,11 @@ export const Table = ({ headers, data }) => {
 
 export const TableHead = ({ headers }) => {
 	return (
-		<tr className='table_row grid grid-cols-5 items-center bg-yellow-300 w-full'>
+		<tr className='table_row grid grid-cols-5 items-center w-full'>
 			{headers.map((header, index) => (
 				<th
 					key={index}
-					className='uppercase text-black py-6 font-normal text-sm first:col-span-2 first:bg-sky-400'
+					className='uppercase text-black py-6 font-normal text-sm first:col-span-2'
 				>
 					{header}
 				</th>

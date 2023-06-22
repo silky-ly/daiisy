@@ -1,8 +1,14 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CartData, Table } from '../../components/TableHead';
 import { headers } from '../../data/products';
 import Layout from '../../layouts/Layout';
-import { decreaseQuantity, removeItem } from '../../features/cart/cart.slice';
+import {
+	addItem,
+	decreaseQuantity,
+	getTotal,
+	removeItem,
+} from '../../features/cart/cart.slice';
 
 const Cart = () => {
 	const dispatch = useDispatch();
@@ -21,6 +27,14 @@ const Cart = () => {
 		dispatch(decreaseQuantity(cartItem));
 	};
 
+	const handleIncreaseQuantity = (cartItem) => {
+		dispatch(addItem(cartItem));
+	};
+
+	useEffect(() => {
+		dispatch(getTotal());
+	}, [cart]);
+
 	return (
 		<Layout>
 			<section className='cart px-5'>
@@ -37,6 +51,7 @@ const Cart = () => {
 								remove={handleRemoveItem}
 								count={count}
 								decrease={handleDecreaseQuantity}
+								increase={handleIncreaseQuantity}
 							/>
 						}
 					/>
@@ -49,7 +64,7 @@ const Cart = () => {
 						</p>
 
 						<p className='text-2xl font-bolder font-opposit text-right tracking-widest py-0'>
-							$8.99
+							{cart.cartTotalAmount}
 						</p>
 					</div>
 
