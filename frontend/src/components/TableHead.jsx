@@ -1,3 +1,6 @@
+import { useDispatch } from "react-redux";
+import { decrement, increment } from "../features/counter/counter.slice";
+
 export const Table = ({ headers, data }) => {
 	return (
 		<table className='block'>
@@ -12,7 +15,7 @@ export const Table = ({ headers, data }) => {
 
 export const TableHead = ({ headers }) => {
 	return (
-		<tr className='table_row grid grid-cols-5 items-center'>
+		<tr className='table_row grid grid-cols-5 items-center bg-yellow-300 w-full'>
 			{headers.map((header, index) => (
 				<th
 					key={index}
@@ -25,7 +28,7 @@ export const TableHead = ({ headers }) => {
 	);
 };
 
-export const CartData = ({ cartItems, remove }) => {
+export const CartData = ({ cartItems, remove, decrease, increase }) => {
 	return cartItems?.map((cart) => (
 		<tr
 			key={cart._id}
@@ -36,10 +39,27 @@ export const CartData = ({ cartItems, remove }) => {
 			</td>
 			<td className=''>
 				<p className='font-bold capitalize font-opposit'>{cart.name}</p>{' '}
-				<button className='uppercase text-[0.6rem]' onClick={() => remove(cart)}>remove</button>
+				<button
+					className='uppercase text-[0.6rem]'
+					onClick={() => remove(cart)}
+				>
+					remove
+				</button>
 			</td>
 			<td className='font-opposit'>{cart.price}</td>
-			<td className='font-opposit'>{cart.qty}</td>
+			<td className='font-opposit w-full'>
+				<div className='flex justify-between items-center px-4'>
+					<button className='' onClick={() => decrease(cart)}>
+						-
+					</button>
+
+					<span className=''>{cart.qty}</span>
+
+					<button className='' onClick={() => increase(cart)}>
+						+
+					</button>
+				</div>
+			</td>
 			<td className='font-opposit'>{cart.price * cart.qty}</td>
 		</tr>
 	));

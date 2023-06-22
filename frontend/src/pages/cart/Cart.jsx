@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { CartData, Table } from '../../components/TableHead';
 import { headers } from '../../data/products';
 import Layout from '../../layouts/Layout';
-import { removeItem } from '../../features/cart/cart.slice';
+import { decreaseQuantity, removeItem } from '../../features/cart/cart.slice';
 
 const Cart = () => {
 	const dispatch = useDispatch();
@@ -11,8 +11,14 @@ const Cart = () => {
 
 	console.log('CART::: ', cart, cart.cartItems);
 
+	const { count } = useSelector((state) => state.counter);
+
 	const handleRemoveItem = (cartItem) => {
 		dispatch(removeItem(cartItem));
+	};
+
+	const handleDecreaseQuantity = (cartItem) => {
+		dispatch(decreaseQuantity(cartItem));
 	};
 
 	return (
@@ -29,6 +35,8 @@ const Cart = () => {
 							<CartData
 								cartItems={cart.cartItems}
 								remove={handleRemoveItem}
+								count={count}
+								decrease={handleDecreaseQuantity}
 							/>
 						}
 					/>
@@ -59,6 +67,8 @@ const Cart = () => {
 						</button>
 					</div>
 				</div>
+
+				<span>clear cart</span>
 			</section>
 		</Layout>
 	);
