@@ -1,4 +1,4 @@
-import registerImage from '../../static/assets/one.jpg';
+// import registerImage from '../../static/assets/one.jpg';
 
 const Login = () => {
 	return (
@@ -27,7 +27,7 @@ const Login = () => {
 					</form>
 				</div>
 				<div className='h-screen w-full'>
-					<img src={registerImage} />
+					{/* <img src={registerImage} /> */}
 				</div>
 			</div>
 		</>

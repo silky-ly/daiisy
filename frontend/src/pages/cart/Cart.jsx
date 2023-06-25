@@ -37,7 +37,7 @@ const Cart = () => {
 
 	return (
 		<Layout>
-			<section className='cart px-5'>
+			<section className='cart px-5 w-full h-full relative'>
 				<h2 className='font-bolder font-opposit text-2xl uppercase tracking-wider'>
 					your bag
 				</h2>
@@ -49,7 +49,6 @@ const Cart = () => {
 							<CartData
 								cartItems={cart.cartItems}
 								remove={handleRemoveItem}
-								count={count}
 								decrease={handleDecreaseQuantity}
 								increase={handleIncreaseQuantity}
 							/>
@@ -57,33 +56,34 @@ const Cart = () => {
 					/>
 				</div>
 
-				<div className='cart-summary absolute right-5 mt-8 mb-16 w-3/6 text-end'>
-					<div className='flex items-baseline justify-end w-full'>
-						<p className='uppercase text-xs font-light text-right py-0 mr-2'>
-							subtotal
+				<div className='cart-summary relative flex justify-between h-auto mt-8 mb-16'>
+					<span className='text-sm font-opposit capitalize'>clear cart</span>
+					<div className='w-2/5 text-end'>
+						<div className='flex items-baseline justify-end w-full'>
+							<p className='uppercase text-xs font-light text-right py-0 mr-2'>
+								subtotal
+							</p>
+
+							<p className='text-2xl font-bolder font-opposit text-right tracking-widest py-0'>
+								{cart.cartTotalAmount}
+							</p>
+						</div>
+
+						<p className='text-xs font-normal italic my-2'>
+							Shipping & taxes calculated at checkout
 						</p>
 
-						<p className='text-2xl font-bolder font-opposit text-right tracking-widest py-0'>
-							{cart.cartTotalAmount}
-						</p>
-					</div>
+						<div className='grid grid-cols-2 gap-2 items-end'>
+							<button className='btn-shop font-opposit'>
+								update cart
+							</button>
 
-					<p className='text-xs font-normal italic my-2'>
-						Shipping & taxes calculated at checkout
-					</p>
-
-					<div className='grid grid-cols-2 gap-2 items-end'>
-						<button className='btn-shop font-opposit'>
-							update cart
-						</button>
-
-						<button className='btn-shop font-opposit hover:text-black hover:bg-white'>
-							checkout
-						</button>
+							<button className='btn-shop font-opposit hover:text-black hover:bg-white'>
+								checkout
+							</button>
+						</div>
 					</div>
 				</div>
-
-				<span>clear cart</span>
 			</section>
 		</Layout>
 	);

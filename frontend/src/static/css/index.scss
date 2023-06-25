@@ -5,6 +5,11 @@
 		@apply m-0 p-0 box-border;
 	}
 
+	html {
+		font-family: 'JetBrainsMono';
+		src: url('../fonts/JetBrains/JetBrainsMono.ttf') format('truetype');
+	}
+
 	@font-face {
 		font-family: 'JetBrainsMono';
 		src: url('../fonts/JetBrains/JetBrainsMono.ttf') format('truetype');
@@ -60,6 +65,10 @@
 	input:focus {
 		@apply outline-none;
 		// border: 0.5px solid #253cac;
+	}
+
+	.socials a {
+		@apply px-8 h-4 text-stone-500 text-xxs uppercase text-center border-r-0.5 border-solid border-black;
 	}
 }
 

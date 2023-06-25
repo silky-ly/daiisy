@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { getProductById } from '../../features/products/product.slice';
 import { decrement, increment } from '../../features/counter/counter.slice';
-import { addItem } from '../../features/cart/cart.slice';
+import { addItem, decreaseQuantity } from '../../features/cart/cart.slice';
 import Layout from '../../layouts/Layout';
 
 const Product = () => {
@@ -11,39 +11,33 @@ const Product = () => {
 
 	const dispatch = useDispatch();
 
-	const product = useSelector((state) => {
-		// console.log(state, 'state');
-		return state.products.product;
-	});
+	const { product } = useSelector((state) => state.products);
 
 	const { count } = useSelector((state) => state.counter);
 
 	const { id } = useParams();
 
- 	useEffect(() => {
+	useEffect(() => {
 		console.log(id, 'id');
 		dispatch(getProductById(id));
 	}, [id]);
 
 	const addToCartHandler = (product) => {
 		dispatch(addItem(product));
-
-		console.log(product, 'product by add to cart')
-
 		navigate(`/cart`);
 		// navigate(`/cart/${id}?qty=${count}`);
 	};
 
 	return (
 		<Layout>
-			<section className='product h-auto w-11/12 m-auto mt-5 grid grid-cols-2 gap-16 border-indigo-400'>
-				<div className='h-full'>
+			<section className='product h-auto w-11/12 m-auto mt-5 flex justify-between gap-16 bg-blue-100'>
+				<div className='h-full w-3/5'>
 					<img src={product?.image} className='' />
 
 					<div className='carousel'>hhhsgvsgxdv</div>
 				</div>
 
-				<div className='py-8 px-10 bg-blue-100'>
+				<div className='py-8 px-10 bg-purple-100 w-2/5'>
 					<p className='text-sm font-normal uppercase tracking-wide leading-6'>
 						{product?.caption}
 					</p>
@@ -68,7 +62,7 @@ const Product = () => {
 					{product?.countInStock > 0 && (
 						<div className='w-3/5 grid grid-cols-3 gap-1'>
 							<div className='flex justify-between items-center border-0.5 border-solid border-black px-4'>
-								<button
+								{/* <button
 									className=''
 									onClick={() => dispatch(decrement())}
 								>
@@ -80,6 +74,24 @@ const Product = () => {
 								<button
 									className=''
 									onClick={() => dispatch(increment())}
+								>
+									+
+								</button> */}
+
+								<button
+									className=''
+									onClick={() =>
+										dispatch(decreaseQuantity(product))
+									}
+								>
+									-
+								</button>
+
+								<span className=''>{product.qty}</span>
+
+								<button
+									className=''
+									onClick={() => dispatch(addItem(product))}
 								>
 									+
 								</button>
@@ -122,11 +134,21 @@ const Product = () => {
 							{product?.description}
 						</p>
 
-						<ul className='my-8'>
-							<li className='w-1/5 pb-2 text-xs font-semibold uppercase border-slate-400 border-b-0.5 border-r-0.5'>
-								<a href=''>how to use</a>
-							</li>
-						</ul>
+						<div className='tabs flex my-8'>
+							<p className='tab w-1/5 pb-2 text-xs font-semibold uppercase border-slate-400 border-b-0.5 border-r-0.5'>
+								how to use
+							</p>
+							<p className='tab w-1/5 pb-2 text-xs font-semibold uppercase border-slate-400 border-b-0.5 border-r-0.5'>
+								ingredients
+							</p>
+						</div>
+
+						<div>
+							<p>vlamdir koshevkhi</p>
+						</div>
+						<div>
+							<p>alias ysolvif</p>
+						</div>
 					</div>
 				</div>
 			</section>

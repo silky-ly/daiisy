@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Carousel } from '@mantine/carousel';
 import { rem } from '@mantine/core';
@@ -6,15 +7,23 @@ import { EpArrowLeft, EpArrowRight } from '../../static/assets/svg/svg';
 import { getProducts } from '../../features/products/product.slice';
 import Layout from '../../layouts/Layout';
 import { Card } from '../../components/Cards';
-import lip from '../../static/assets/images/ppp.jpg';
-import berry from '../../static/assets/images/glow_strawberry.jpg';
+import lip from '../../static/assets/images/sev.jpg';
+import { addItem } from '../../features/cart/cart.slice';
 
 const HomeScreen = () => {
+	const navigate = useNavigate();
+
 	const dispatch = useDispatch();
 
 	const { isLoading, isSuccess, isError, message, products } = useSelector(
 		(state) => state.products
 	);
+
+	const addToCartHandler = (product) => {
+		dispatch(addItem(product));
+		console.log('PRODUCT::: ', product)
+		navigate(`/cart`);
+	};
 
 	useEffect(() => {
 		isError ? message : isSuccess ? message : null;
@@ -24,11 +33,12 @@ const HomeScreen = () => {
 
 	return (
 		<Layout>
-			<section className='homepage h-screen w-full'>
-				<div className='h-5/6 relative w-full'>
+			<section className='homepage w-full h-full'>
+				<div className='h-[700px] relative w-full'>
 					<img src={lip} />
+					<div className='overlay'></div>
 					<div className='inset-x-2/3 absolute top-2/4 w-1/4 block'>
-						<p className='sub-head-p font-opposit'>
+						<p className='sub-head-p font-opposit text-white'>
 							get your hydrating milk cleanser <br />
 						</p>
 
@@ -53,8 +63,8 @@ const HomeScreen = () => {
 					</div>
 				</div>
 
-				<div className='mt-16 px-8 h-auto relative'>
-					<h4 className='sub-head-4'>shop top sellers</h4>
+				<div className='mt-16 px-8 h-[700px] relative'>
+					<h4 className='sub-head-4 my-12'>shop top sellers</h4>
 
 					<Carousel
 						className='w-full h-auto'
@@ -108,13 +118,13 @@ const HomeScreen = () => {
 					>
 						{products.map((product) => (
 							<Carousel.Slide key={product._id}>
-								<Card product={product} />
+								<Card product={product} add={addToCartHandler} />
 							</Carousel.Slide>
 						))}
 					</Carousel>
 				</div>
 
-				<div className='third mt-20 grid bg-blue-500'>
+				{/* <div className='third mt-20 grid bg-blue-500'>
 					<div className='grid grid-cols-2 bg-purple-700'>
 						<div className='m-auto bg-pink-500'>
 							<h5 className='font-semibold leading-8 text-xl'>
@@ -129,10 +139,10 @@ const HomeScreen = () => {
 						</div>
 
 						<div className='bg-pink-500'>
-							{/* <img src={berry} className='' /> */}
+							<img src={berry} className='' />
 						</div>
 					</div>
-				</div>
+				</div> */}
 			</section>
 		</Layout>
 	);
