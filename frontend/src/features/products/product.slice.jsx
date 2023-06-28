@@ -25,11 +25,7 @@ export const getProductById = createAsyncThunk(
 			return await productService.getProductDetails(id);
 		} catch (err) {
 			const mssg =
-				(err.response &&
-					err.response.data &&
-					err.response.data.message) ||
-				err.message ||
-				err.toString();
+				(err.response && err.response.data && err.response.data.message) || err.message || err.toString();
 			return thunkAPI.rejectWithValue(mssg);
 		}
 	}
@@ -72,18 +68,6 @@ const productSlice = createSlice({
 				state.isLoading = false;
 				state.isSuccess = true;
 				state.product = action.payload;
-				// const product = state.products.filter((p) => {
-				// 	p._id === action.payload.id;
-				// 	console.log(current(p), 'pto');
-				// });
-				// state[product] = {...state[product], ...action.payload}
-
-				// const now = (state) => state.products;
-				// const selected = createSelector(now, (products) =>
-				// 	products.filter((pro) => pro._id === action.payload.id)
-				// );
-
-				// state.products = {...selected}
 			})
 			.addCase(getProductById.rejected, (state, action) => {
 				state.isLoading = false;

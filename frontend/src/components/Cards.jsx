@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import lip from '../static/assets/images/versed-lips.jpg';
+import lip from '../static/assets/images/cream.jpg';
 
 export const Card = ({ product, add }) => {
 	return (

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { getProductById } from '../../features/products/product.slice';
@@ -17,6 +17,12 @@ const Product = () => {
 
 	const { id } = useParams();
 
+	const [show, setShow] = useState(1);
+
+	const toggleTabs = (index) => {
+		setShow(index);
+	};
+
 	useEffect(() => {
 		console.log(id, 'id');
 		dispatch(getProductById(id));
@@ -25,7 +31,6 @@ const Product = () => {
 	const addToCartHandler = (product) => {
 		dispatch(addItem(product));
 		navigate(`/cart`);
-		// navigate(`/cart/${id}?qty=${count}`);
 	};
 
 	return (
@@ -111,7 +116,7 @@ const Product = () => {
 							category:{' '}
 							<Link
 								to='/skincare'
-								className='font-light text-black font-semibold'
+								className='text-black font-semibold'
 							>
 								{product?.category}
 							</Link>{' '}
@@ -120,7 +125,7 @@ const Product = () => {
 							brand:{' '}
 							<a
 								href='https://versedskin.com'
-								className='font-light text-black font-semibold'
+								className='text-black font-semibold'
 							>
 								{product?.brand}
 							</a>{' '}
@@ -129,25 +134,78 @@ const Product = () => {
 
 					<div className='line my-8 w-full border-b-0.5 border-black'></div>
 
-					<div>
+					<div className=''>
 						<p className='text-xs font-light leading-6'>
 							{product?.description}
 						</p>
 
-						<div className='tabs flex my-8'>
-							<p className='tab w-1/5 pb-2 text-xs font-semibold uppercase border-slate-400 border-b-0.5 border-r-0.5'>
+						<div className='too flex my-8 border-b-0.5 border-slate-400'>
+							<p
+								onClick={() => toggleTabs(1)}
+								className={
+									show === 1 ? 'tabs active-tab' : 'tabs'
+								}
+							>
 								how to use
 							</p>
-							<p className='tab w-1/5 pb-2 text-xs font-semibold uppercase border-slate-400 border-b-0.5 border-r-0.5'>
+
+							<p
+								onClick={() => toggleTabs(2)}
+								className={
+									show === 2 ? 'tabs active-tab' : 'tabs'
+								}
+							>
 								ingredients
+							</p>
+
+							<p
+								onClick={() => toggleTabs(3)}
+								className={
+									show === 3 ? 'tabs active-tab' : 'tabs'
+								}
+							>
+								recycle
 							</p>
 						</div>
 
 						<div>
-							<p>vlamdir koshevkhi</p>
-						</div>
-						<div>
-							<p>alias ysolvif</p>
+							<p
+								className={
+									show === 1 ? 'active-content' : 'content'
+								}
+							>
+								<span className='font-semibold'>HOW:</span> Apply a thin, even layer to
+								clean, dry skin and rinse with cool water after
+								2-3 minutes. Do not leave on for more than 3
+								minutes, and avoid using other acid-based
+								products and retinoids for 24 hours before and
+								after each use.<br />
+								<span className='font-semibold'>WHERE:</span> Entire face, avoiding eye
+								area.<br />
+								<span className='font-semibold'>WHEN:</span>Once a week, ideally at
+								night, after cleansing (and toning) but before
+								moisturizing. See full results in four uses, and
+								continue using the resurfacing mask weekly to
+								maintain them.<br />
+								<span className='font-semibold'>OOD TO KNOW:</span>G Skin may appear
+								slightly pink after usage. This is completely
+								normal and should subside shortly. However, if
+								your skin is on the sensitive side, this
+								resurfacing mask may not be right for you. Start
+								with a patch test of 60-90 seconds to see if
+								your skin tolerates the product. Or try The
+								Shortcut Overnight Facial Peel, a gentler
+								option, instead. <br />
+								Use within 6 months once
+								opened.
+							</p>
+							<p
+								className={
+									show === 2 ? 'active-content' : 'content'
+								}
+							>
+								alias ysolvif
+							</p>
 						</div>
 					</div>
 				</div>

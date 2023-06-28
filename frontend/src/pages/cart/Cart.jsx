@@ -5,6 +5,7 @@ import { headers } from '../../data/products';
 import Layout from '../../layouts/Layout';
 import {
 	addItem,
+	clearCart,
 	decreaseQuantity,
 	getTotal,
 	removeItem,
@@ -57,7 +58,12 @@ const Cart = () => {
 				</div>
 
 				<div className='cart-summary relative flex justify-between h-auto mt-8 mb-16'>
-					<span className='text-sm font-opposit capitalize'>clear cart</span>
+					<span
+						onClick={() => dispatch(clearCart(cart.cartItems))}
+						className='text-sm font-opposit capitalize'
+					>
+						clear cart
+					</span>
 					<div className='w-2/5 text-end'>
 						<div className='flex items-baseline justify-end w-full'>
 							<p className='uppercase text-xs font-light text-right py-0 mr-2'>

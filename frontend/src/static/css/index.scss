@@ -5,11 +5,6 @@
 		@apply m-0 p-0 box-border;
 	}
 
-	html {
-		font-family: 'JetBrainsMono';
-		src: url('../fonts/JetBrains/JetBrainsMono.ttf') format('truetype');
-	}
-
 	@font-face {
 		font-family: 'JetBrainsMono';
 		src: url('../fonts/JetBrains/JetBrainsMono.ttf') format('truetype');
@@ -68,7 +63,7 @@
 	}
 
 	.socials a {
-		@apply px-8 h-4 text-stone-500 text-xxs uppercase text-center border-r-0.5 border-solid border-black;
+		@apply px-8 h-4 text-[#444] text-xxs font-light uppercase text-center tracking-wider border-r-0.5 border-solid border-black hover:text-black;
 	}
 }
 
@@ -105,6 +100,26 @@
 
 	.input {
 		@apply pl-3 text-xs block mb-10;
+	}
+
+	.too p {
+		@apply last:border-r-0;
+	}
+
+	.tabs {
+		@apply w-2/5 py-2 text-xs text-center text-[#444] font-semibold uppercase border-slate-400 border-r-0.5 cursor-pointer;
+	}
+
+	.active-tab {
+		@apply font-bold text-black;
+	}
+
+	.content {
+		@apply hidden;
+	}
+
+	.active-content {
+		@apply block text-xs leading-6;
 	}
 }
 
