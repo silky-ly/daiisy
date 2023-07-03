@@ -7,6 +7,7 @@
 
 	@font-face {
 		font-family: 'JetBrainsMono';
+		font-display: swap;
 		src: url('../fonts/JetBrains/JetBrainsMono.ttf') format('truetype');
 	}
 
@@ -17,11 +18,13 @@
 
 	@font-face {
 		font-family: 'Opposit';
+		font-display: swap;
 		src: url('../fonts/Opposit.ttf') format('truetype');
 	}
 
 	@font-face {
 		font-family: 'Outfit';
+		display: swap;
 		src: url('../fonts/Outfit.ttf') format('truetype');
 	}
 

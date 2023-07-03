@@ -1,19 +1,43 @@
 import { Link } from 'react-router-dom';
 import { Slip } from '../../components/Cards';
 import { EpArrowLeft } from '../../static/assets/svg/svg';
+import usePaystack from '../../hooks/usePaystack';
+import lip from '../../static/assets/images/paystack.jpg';
 
 const CheckOut = () => {
+	const pay = usePaystack({
+		amount: 4000,
+		email: 'faithamiekhame@gmail.com',
+		onSuccess: ({ reference }) => markAsPaid(reference),
+		onClose: () => alert('widget closed'),
+	});
+
+	const markAsPaid = (reference) => {
+		console.log(reference);
+	};
+
 	return (
 		<section className='checkout flex w-full p-10'>
 			<div className='w-3/5 px-14 border border-t-0 border-l-0 border-b-0 border-r-0.5 border-[#ccc]'>
-
 				<h4>shop daisy</h4>
 
 				<h4>express checkout</h4>
+				<div className='w-4/5 mx-auto flex justify-between items-center text-center'>
+					<img
+						src={lip}
+						alt=''
+						className='w-1/6 cursor-pointer'
+						onClick={pay}
+					/>
+					<img src={lip} alt='' className='w-1/6' />
+					<img src={lip} alt='' className='w-1/6' />
+				</div>
+
+				<div></div>
 
 				<div className='line'></div>
-				
-				<h3 className='font-jetbrains uppercase font-semibold tracking-wide text-lg'>
+
+				<h3 className='uppercase font-semibold tracking-wide text-lg'>
 					shipping address
 				</h3>
 
@@ -28,7 +52,6 @@ const CheckOut = () => {
 						<input
 							type='text'
 							name='firstname'
-							value=''
 							placeholder='first name'
 							className='input'
 						/>
@@ -36,7 +59,6 @@ const CheckOut = () => {
 						<input
 							type='text'
 							name='lastname'
-							value=''
 							placeholder='last name'
 							className='input'
 						/>
@@ -45,7 +67,6 @@ const CheckOut = () => {
 					<input
 						type='text'
 						name='address'
-						value=''
 						placeholder='address'
 						className='input w-full'
 					/>
@@ -54,7 +75,6 @@ const CheckOut = () => {
 						<input
 							type='text'
 							name='address'
-							value=''
 							placeholder='address'
 							className='input'
 						/>
@@ -68,7 +88,6 @@ const CheckOut = () => {
 						<input
 							type='number'
 							name='zipcode'
-							value=''
 							placeholder='zip code'
 							className='input'
 						/>
@@ -77,7 +96,6 @@ const CheckOut = () => {
 					<input
 						type='number'
 						name='phonenumber'
-						value=''
 						placeholder='phone'
 						className='input w-full'
 					/>
@@ -91,7 +109,7 @@ const CheckOut = () => {
 						<span>{<EpArrowLeft />}</span>return to cart
 					</Link>
 
-					<button className='btn-shop w-2/6'>
+					<button className='btn-shop w-2/6' onClick={pay}>
 						continue to shopping
 					</button>
 				</div>

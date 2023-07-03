@@ -3,7 +3,7 @@ import { Instagram, LinkedIn, Twitter } from '../../static/assets/svg/svg';
 const Footer = () => {
 	return (
 		<footer className=' footer w-full mt-16 py-10 px-6 bottom-0 border-t-2 border-black border-solid'>
-			<h3 className='uppercase text-lg'>
+			<h3 className='uppercase text-sm font-bold'>
 				get good skin and exciting emails
 			</h3>
 
@@ -15,7 +15,7 @@ const Footer = () => {
 						placeholder='email'
 					/>
 
-					<span className='flex justify-center items-center w-2/5 h-12 text-white bg-black uppercase'>
+					<span className='flex justify-center items-center w-1/4 h-12 text-white text-sm tracking-wider bg-black uppercase'>
 						sign me up
 					</span>
 				</div>

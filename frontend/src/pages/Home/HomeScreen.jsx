@@ -124,25 +124,37 @@ const HomeScreen = () => {
 					</Carousel>
 				</div>
 
-				{/* <div className='third mt-20 grid bg-blue-500'>
-					<div className='grid grid-cols-2 bg-purple-700'>
-						<div className='m-auto bg-pink-500'>
-							<h5 className='font-semibold leading-8 text-xl'>
+				<div className='third mt-20 bg-blue-500'>
+					<div className='flex justify-between bg-purple-700'>
+						<div className='w-2/6 m-auto bg-pink-500'>
+							<h5 className='font-semibold leading-8 text-2xl font-opposit tracking-wider w-3/5'>
 								HIGH PERFORMANCE MEETS PURPOSE
 							</h5>
 
-							<p className='my-4 text-xs font-light tracking-widest leading-2'>
+							<p className='my-4 text-xs font-light tracking-wider leading-2 w-4/5'>
 								Clean, cruelty-free products, powered by proven
 								ingredients and tested by dermatologists.
 							</p>
 							<button className='btn-shop'>shop now</button>
 						</div>
 
-						<div className='bg-pink-500'>
-							<img src={berry} className='' />
+						<div className='m-auto bg-pink-500'>
+							<h5 className='font-semibold leading-8 text-xl'>
+								HIGH PERFORMANCE MEETS PURPOSE
+							</h5>
+
+							<p className='my-4 text-xs font-light tracking-wider leading-2'>
+								Clean, cruelty-free products, powered by proven
+								ingredients and tested by dermatologists.
+							</p>
+							<button className='btn-shop'>shop now</button>
 						</div>
+
+						{/* <div className='bg-pink-500'>
+							<img src={lip} className='' />
+						</div> */}
 					</div>
-				</div> */}
+				</div>
 			</section>
 		</Layout>
 	);
