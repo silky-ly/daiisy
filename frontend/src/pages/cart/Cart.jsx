@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { CartData, Table } from '../../components/TableHead';
+import { CartData, Table } from '../../components/table/TableHead';
 import { headers } from '../../data/products';
 import Layout from '../../layouts/Layout';
 import {
@@ -60,7 +60,7 @@ const Cart = () => {
 				<div className='cart-summary relative flex justify-between h-auto mt-8 mb-16'>
 					<span
 						onClick={() => dispatch(clearCart(cart.cartItems))}
-						className='text-sm font-opposit capitalize'
+						className='text-sm font-opposit capitalize cursor-pointer'
 					>
 						clear cart
 					</span>

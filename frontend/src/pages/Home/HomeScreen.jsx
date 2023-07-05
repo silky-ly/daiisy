@@ -1,14 +1,17 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { useQuery } from '@tanstack/react-query';
 import { Carousel } from '@mantine/carousel';
 import { rem } from '@mantine/core';
 import { EpArrowLeft, EpArrowRight } from '../../static/assets/svg/svg';
 import { getProducts } from '../../features/products/product.slice';
 import Layout from '../../layouts/Layout';
-import { Card } from '../../components/Cards';
-import lip from '../../static/assets/images/sev.jpg';
+import { Card } from '../../components/card/Cards';
+import lip from '../../static/assets/images/cream.jpg';
+import lid from '../../static/assets/images/mo.jpg';
 import { addItem } from '../../features/cart/cart.slice';
+import axios from 'axios';
 
 const HomeScreen = () => {
 	const navigate = useNavigate();
@@ -21,9 +24,21 @@ const HomeScreen = () => {
 
 	const addToCartHandler = (product) => {
 		dispatch(addItem(product));
-		console.log('PRODUCT::: ', product)
+		console.log('PRODUCT::: ', product);
 		navigate(`/cart`);
 	};
+
+	// const queryClient = useQueryClient();
+
+	const { data } = useQuery({
+		queryKey: ['todos'],
+		queryFn: async () =>
+			await axios.get('/api/v1/products').then((res) => {
+				const data = res.data;
+				console.log(data, 'data');
+				return data;
+			}),
+	});
 
 	useEffect(() => {
 		isError ? message : isSuccess ? message : null;
@@ -118,15 +133,18 @@ const HomeScreen = () => {
 					>
 						{products.map((product) => (
 							<Carousel.Slide key={product._id}>
-								<Card product={product} add={addToCartHandler} />
+								<Card
+									product={product}
+									add={addToCartHandler}
+								/>
 							</Carousel.Slide>
 						))}
 					</Carousel>
 				</div>
 
-				<div className='third mt-20 bg-blue-500'>
-					<div className='flex justify-between bg-purple-700'>
-						<div className='w-2/6 m-auto bg-pink-500'>
+				<div className='third mt-20 h-full grid gap-20'>
+					<div className='grid grid-cols-2'>
+						<div className='m-auto'>
 							<h5 className='font-semibold leading-8 text-2xl font-opposit tracking-wider w-3/5'>
 								HIGH PERFORMANCE MEETS PURPOSE
 							</h5>
@@ -135,26 +153,38 @@ const HomeScreen = () => {
 								Clean, cruelty-free products, powered by proven
 								ingredients and tested by dermatologists.
 							</p>
-							<button className='btn-shop'>shop now</button>
+							<button className='btn-shop w-2/4'>shop now</button>
 						</div>
 
-						<div className='m-auto bg-pink-500'>
-							<h5 className='font-semibold leading-8 text-xl'>
+						<div className=''>
+							<img src={lid} className='w-[1200px] h-[400px]' />
+						</div>
+					</div>
+
+					<div className='grid grid-cols-2'>
+						<div className='m-auto'>
+							<h5 className='font-semibold leading-8 text-2xl font-opposit tracking-wider w-3/5'>
 								HIGH PERFORMANCE MEETS PURPOSE
 							</h5>
 
-							<p className='my-4 text-xs font-light tracking-wider leading-2'>
+							<p className='my-4 text-xs font-light tracking-wider leading-2 w-4/5'>
 								Clean, cruelty-free products, powered by proven
 								ingredients and tested by dermatologists.
 							</p>
-							<button className='btn-shop'>shop now</button>
+							<button className='btn-shop w-2/4'>shop now</button>
 						</div>
 
-						{/* <div className='bg-pink-500'>
-							<img src={lip} className='' />
-						</div> */}
+						<div className=''>
+							<img src={lid} className='w-[1200px] h-[400px]' />
+						</div>
 					</div>
 				</div>
+
+				<ul>
+					{/* {data.map((todo) => (
+						<li key={todo._id}>{todo.name}</li>
+					))} */}
+				</ul>
 			</section>
 		</Layout>
 	);

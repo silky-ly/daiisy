@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Slip } from '../../components/Cards';
+import { Slip } from '../../components/card/Cards';
 import { EpArrowLeft } from '../../static/assets/svg/svg';
 import usePaystack from '../../hooks/usePaystack';
 import lip from '../../static/assets/images/paystack.jpg';
