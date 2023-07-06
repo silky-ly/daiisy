@@ -28,7 +28,7 @@ const Header = () => {
 					<Search />
 				</a>
 
-				<a href='' className='text-xs font-semibold cursor-pointer'>
+				<a href='/profile' className='text-xs font-semibold cursor-pointer'>
 					<Profile />
 				</a>
 

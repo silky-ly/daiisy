@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useQuery } from '@tanstack/react-query';
@@ -40,6 +40,16 @@ const HomeScreen = () => {
 			}),
 	});
 
+	const ut = [
+		{ question: 'how well does this work?', answer: 'extraordinary' },
+	];
+
+	const [toggle, setToggle] = useState(false)
+
+	const onToggle = () => {
+		
+	}
+
 	useEffect(() => {
 		isError ? message : isSuccess ? message : null;
 
@@ -53,7 +63,7 @@ const HomeScreen = () => {
 					<img src={lip} />
 					<div className='overlay'></div>
 					<div className='inset-x-2/3 absolute top-2/4 w-1/4 block'>
-						<p className='sub-head-p font-opposit text-white'>
+						<p className='sub-head-p font-opposit text-black'>
 							get your hydrating milk cleanser <br />
 						</p>
 
@@ -142,7 +152,7 @@ const HomeScreen = () => {
 					</Carousel>
 				</div>
 
-				<div className='third mt-20 h-full grid gap-20'>
+				<div className='third my-20 mx-auto h-full grid gap-20 w-5/6'>
 					<div className='grid grid-cols-2'>
 						<div className='m-auto'>
 							<h5 className='font-semibold leading-8 text-2xl font-opposit tracking-wider w-3/5'>
@@ -185,6 +195,20 @@ const HomeScreen = () => {
 						<li key={todo._id}>{todo.name}</li>
 					))} */}
 				</ul>
+
+				<h4>frequently asked questions</h4>
+				<div className='bg-blue-300'>
+
+
+				{ut.map((item, index) => {
+					return (
+						<div>
+							<h4 className=''>{item.question}</h4>
+							<span>{item.answer}</span>
+						</div>
+					);
+				})}
+				</div>
 			</section>
 		</Layout>
 	);
