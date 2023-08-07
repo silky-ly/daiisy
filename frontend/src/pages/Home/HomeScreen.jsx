@@ -12,11 +12,14 @@ import lip from '../../static/assets/images/cream.jpg';
 import lid from '../../static/assets/images/mo.jpg';
 import { addItem } from '../../features/cart/cart.slice';
 import axios from 'axios';
+import Accordion from '../../components/accordion/Accordion';
 
 const HomeScreen = () => {
 	const navigate = useNavigate();
 
 	const dispatch = useDispatch();
+
+	const [accordion, setAccordion] = useState(false);
 
 	const { isLoading, isSuccess, isError, message, products } = useSelector(
 		(state) => state.products
@@ -44,11 +47,15 @@ const HomeScreen = () => {
 		{ question: 'how well does this work?', answer: 'extraordinary' },
 	];
 
-	const [toggle, setToggle] = useState(false)
+	// const [toggle, setToggle] = useState(false);
 
-	const onToggle = () => {
-		
-	}
+	const onToggle = (index) => {
+		if (accordion === index) {
+			return setAccordion(null);
+		}
+
+		setAccordion(index);
+	};
 
 	useEffect(() => {
 		isError ? message : isSuccess ? message : null;
@@ -197,21 +204,32 @@ const HomeScreen = () => {
 				</ul>
 
 				<h4>frequently asked questions</h4>
-				<div className='bg-blue-300'>
 
+				<div className='bg-blue-300 w-2/4 m-auto'>
+					{ut.map((item, index) => {
+						return (
+							<div onClick={() => onToggle(index)} key={item} className='w-3/4 m-auto bg-purple-700'>
+								<div className='flex items-center justify-between bg-green-600'>
+									<h4 className='bg-pink-600'>
+										{item.question}
+									</h4>
+									<h4 className='bg-blue-600'>
+										{accordion === index ? '-' : '+'}
+									</h4>
+								</div>
 
-				{ut.map((item, index) => {
-					return (
-						<div>
-							<h4 className=''>{item.question}</h4>
-							<span>{item.answer}</span>
-						</div>
-					);
-				})}
+								{accordion === index ? (
+									<span>{item.answer}</span>
+								) : null}
+							</div>
+						);
+					})}
 				</div>
+
+				<Accordion questions={ut} accordion={accordion} />
 			</section>
 		</Layout>
-	);
+	)
 };
 
 export default HomeScreen;
