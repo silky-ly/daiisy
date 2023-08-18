@@ -1,52 +1,53 @@
-// import registerImage from '../../static/assets/one.jpg';
+import Layout from "../../layouts/Layout";
 
 const Register = () => {
 	return (
-		<>
-			<div className='auth'>
-				<div className='flex-column'>
-					<h3 className=''>Let's create an account for you</h3>
-					<form className='w-3/5 flex flex-col justify-between'>
+		<Layout>
+			<div className='w-full'>
+				<div className='w-2/6 m-auto pt-28'>
+					<h3 className='capitalize text-lg tracking-tighter'>Let's create an account for you</h3>
+					<form className='flex flex-col justify-between'>
 						<input
 							type='text'
-							name='name'
+							name='firstname'
 							value=''
-							placeholder='name'
+							placeholder='first name'
 							className='input focus:outline-none focus:border-blue-400'
 						/>
 
 						<input
 							type='text'
-							name='name'
+							name='lastname'
 							value=''
-							placeholder='email'
+							placeholder='last name'
 							className='input focus:outline-none focus:border-blue-400'
 						/>
 
 						<input
 							type='text'
-							name='name'
-							value=''
-							placeholder='address'
-							className='input focus:outline-none focus:border-blue-400'
-						/>
-
-						<input
-							type='text'
-							name='name'
+							name='email'
 							value=''
 							placeholder='email'
 							className='input focus:outline-none focus:border-blue-400'
 						/>
 
-						<button className='btn-primary'>register</button>
+						<input
+							type='text'
+							name='password'
+							value=''
+							placeholder='password'
+							className='input focus:outline-none focus:border-blue-400'
+						/>
+
+						<p className="text-xs flex items-center mb-4">
+							<input className="inline w-[15px] mr-2" type="checkbox" />
+							<span>sign up for email updates</span>
+							</p>
+						<button className='btn-primary'>create</button>
 					</form>
 				</div>
-				<div className='h-screen w-full'>
-					{/* <img src={registerImage} /> */}
-				</div>
 			</div>
-		</>
+		</Layout>
 	);
 };
 

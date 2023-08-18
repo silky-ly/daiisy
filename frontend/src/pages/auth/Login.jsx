@@ -1,12 +1,14 @@
-// import registerImage from '../../static/assets/one.jpg';
+import Layout from '../../layouts/Layout';
 
 const Login = () => {
 	return (
-		<>
-			<div className='auth'>
-				<div className='flex-column'>
-					<h3 className=''>Let's log you in...</h3>
-					<form className='w-3/5 flex flex-col justify-between'>
+		<Layout>
+			<div className='w-full'>
+				<div className='w-2/6 m-auto pt-28'>
+					<h3 className='capitalize text-lg tracking-tighter'>
+						Let's log you in...
+					</h3>
+					<form className='flex flex-col justify-between'>
 						<input
 							type='text'
 							name='name'
@@ -17,20 +19,20 @@ const Login = () => {
 
 						<input
 							type='text'
-							name='name'
+							name='password'
 							value=''
 							placeholder='password'
 							className='input focus:outline-none focus:border-blue-400'
 						/>
 
 						<button className='btn-primary'>log in</button>
+						<button className='relative mt-4 uppercase text-xs tracking-tighter'>
+							create account
+						</button>
 					</form>
 				</div>
-				<div className='h-screen w-full'>
-					{/* <img src={registerImage} /> */}
-				</div>
 			</div>
-		</>
+		</Layout>
 	);
 };
 

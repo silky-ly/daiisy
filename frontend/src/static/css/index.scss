@@ -52,11 +52,11 @@
 
 	input,
 	select {
-		@apply w-full h-14 border-[#ccc] border-0.5 border-solid mb-8;
+		@apply w-full h-12 border-[#000] border-0.5 border-solid;
 	}
 
 	input::placeholder {
-		@apply tracking-wide text-xs text-zinc-500 capitalize;
+		@apply tracking-wide text-xs text-[#444] capitalize;
 	}
 
 	select:focus,
@@ -77,20 +77,12 @@
 		@apply mb-8 uppercase text-3xl font-[900] tracking-wider leading-8;
 	}
 
-	.auth {
-		@apply grid grid-cols-2;
-	}
-
 	.flex-column {
 		@apply w-full h-screen flex flex-col justify-center items-center;
 	}
 
-	.flex-rowed {
-		@apply;
-	}
-
 	.btn-primary {
-		@apply w-full h-12 text-white text-sm uppercase tracking-widest bg-blue-800 before:bg-violet-300;
+		@apply w-full h-12 text-white text-sm uppercase tracking-widest bg-black before:bg-violet-300;
 	}
 
 	.btn-shop {
@@ -102,7 +94,7 @@
 	}
 
 	.input {
-		@apply pl-3 text-xs block mb-10;
+		@apply pl-3 text-xs block mb-4;
 	}
 
 	.too p {
@@ -124,6 +116,30 @@
 	.active-content {
 		@apply block text-xs leading-6;
 	}
+
+	.clicked {
+		@apply hidden;
+	}
+
+	.default-link {
+		@apply text-xs font-semibold cursor-pointer;
+	}
+
+	.nav-link {
+		@apply block relative uppercase font-opposit text-center tracking-wider;
+	}
+
+	.on-flex {
+		@apply flex justify-between items-center;
+	}
+
+	.on-link-hover {
+		@apply before:content-["_"] before:absolute before:w-full before:h-[0.5px] pb-1 before:bg-black before:left-0 before:bottom-0 before:origin-right before:scale-x-0 before:transition-transform before:duration-300 before:ease-in-out hover:before:origin-left hover:before:scale-x-100;
+	}
+
+	// on-btn-animation {
+	// 	@apply;
+	// }
 }
 
 @tailwind utilities;

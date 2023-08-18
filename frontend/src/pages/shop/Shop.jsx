@@ -20,6 +20,7 @@ const Shop = () => {
 
 	const ut = [
 		{
+			_id: '1',
 			question: 'shop all',
 			answer: [
 				'sale & offer',
@@ -31,6 +32,7 @@ const Shop = () => {
 			],
 		},
 		{
+			_id: '2',
 			question: 'by concern',
 			answer: [
 				'all skin types',
@@ -41,6 +43,7 @@ const Shop = () => {
 			],
 		},
 		{
+			_id: '3',
 			question: 'by category',
 			answer: [
 				'facial cleansers',
@@ -53,6 +56,7 @@ const Shop = () => {
 			],
 		},
 		{
+			_id: '4',
 			question: 'by ingredient',
 			answer: [
 				'retinol',
@@ -108,7 +112,10 @@ const Shop = () => {
 					<main className='bg-purple-400 col-span-5 p-5'>
 						<div className='grid grid-cols-3 gap-10'>
 							{products.map((product) => (
-								<div className='card flex flex-col bg-green-400'>
+								<div
+									className='card flex flex-col bg-green-400'
+									key={product._id}
+								>
 									<Link
 										to={`/product/${product._id}`}
 										className='bg-purple-300'
