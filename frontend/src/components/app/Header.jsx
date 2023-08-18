@@ -8,7 +8,7 @@ const Header = () => {
 		<nav className='w-full m-auto p-6 px-24 bg-white flex justify-between'>
 			<div className='nav-wrap w-3/4 flex justify-between'>
 				{[
-					['shop', '/'],
+					['shop', '/shop'],
 					['blog', '/blog'],
 					['cart', '/cart'],
 					['about', '/about'],

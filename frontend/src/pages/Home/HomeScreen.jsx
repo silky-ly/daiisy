@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { useQuery } from '@tanstack/react-query';
 import { Carousel } from '@mantine/carousel';
 import { rem } from '@mantine/core';
 import { EpArrowLeft, EpArrowRight } from '../../static/assets/svg/svg';
@@ -11,8 +10,7 @@ import { Card } from '../../components/card/Cards';
 import lip from '../../static/assets/images/cream.jpg';
 import lid from '../../static/assets/images/mo.jpg';
 import { addItem } from '../../features/cart/cart.slice';
-import axios from 'axios';
-import Accordion from '../../components/accordion/Accordion';
+import { Accordion } from '../../components/accordion/Accordion';
 
 const HomeScreen = () => {
 	const navigate = useNavigate();
@@ -31,23 +29,10 @@ const HomeScreen = () => {
 		navigate(`/cart`);
 	};
 
-	// const queryClient = useQueryClient();
-
-	const { data } = useQuery({
-		queryKey: ['todos'],
-		queryFn: async () =>
-			await axios.get('/api/v1/products').then((res) => {
-				const data = res.data;
-				console.log(data, 'data');
-				return data;
-			}),
-	});
-
 	const ut = [
 		{ question: 'how well does this work?', answer: 'extraordinary' },
+		{ question: 'garfield?', answer: 'cat' },
 	];
-
-	// const [toggle, setToggle] = useState(false);
 
 	const onToggle = (index) => {
 		if (accordion === index) {
@@ -197,39 +182,16 @@ const HomeScreen = () => {
 					</div>
 				</div>
 
-				<ul>
-					{/* {data.map((todo) => (
-						<li key={todo._id}>{todo.name}</li>
-					))} */}
-				</ul>
-
 				<h4>frequently asked questions</h4>
 
-				<div className='bg-blue-300 w-2/4 m-auto'>
-					{ut.map((item, index) => {
-						return (
-							<div onClick={() => onToggle(index)} key={item} className='w-3/4 m-auto bg-purple-700'>
-								<div className='flex items-center justify-between bg-green-600'>
-									<h4 className='bg-pink-600'>
-										{item.question}
-									</h4>
-									<h4 className='bg-blue-600'>
-										{accordion === index ? '-' : '+'}
-									</h4>
-								</div>
-
-								{accordion === index ? (
-									<span>{item.answer}</span>
-								) : null}
-							</div>
-						);
-					})}
-				</div>
-
-				<Accordion questions={ut} accordion={accordion} />
+				<Accordion
+					questions={ut}
+					accordion={accordion}
+					onToggle={onToggle}
+				/>
 			</section>
 		</Layout>
-	)
+	);
 };
 
 export default HomeScreen;

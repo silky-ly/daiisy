@@ -5,6 +5,7 @@ import HomeScreen from './pages/Home/HomeScreen';
 import Product from './pages/Home/Product';
 import Cart from './pages/cart/Cart';
 import CheckOut from './pages/checkout/CheckOut';
+import Shop from './pages/shop/Shop';
 
 function App() {
 	return (
@@ -13,6 +14,7 @@ function App() {
 				<Route path='/register' element={<Register />} />
 				<Route path='/login' element={<Login />} />
 				<Route path='/' element={<HomeScreen />} />
+				<Route path='/shop' element={<Shop />} />
 				<Route path='/product/:id' element={<Product />} />
 				<Route path='/cart' element={<Cart />} />
 				<Route path='/checkout' element={<CheckOut />} />
