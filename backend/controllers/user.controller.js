@@ -83,6 +83,7 @@ const verifyUser = asyncHandler(async (req, res) => {
 			UserVerification.deleteOne({ _id: userId });
 		}
 	} catch (error) {
+		console.log(error)
 		res.status(400).json('error');
 	}
 
