@@ -6,6 +6,7 @@ const User = require('../models/user.model');
 const UserVerification = require('../models/verification.model');
 const { v4: uuidv4 } = require('uuid');
 const { AUTH_EMAIL, AUTH_PASSWORD } = require('../config');
+const path = require('path');
 
 let transporter = nodemailer.createTransport({
 	service: 'gmail',
@@ -64,30 +65,135 @@ const sendVerificationEmail = ({ _id, email }, res) => {
 		});
 };
 
+// const verifyUser = asyncHandler(async (req, res) => {
+// 	const { userId, unio } = req?.params;
+
+// 	try {
+// 		let isExists = await UserVerification.find({ userId });
+
+// 		console.log('EXISTS::: ', isExists);
+
+// 		if (isExists.length > 0) {
+// 			console.log('an error occured');
+// 			const { expiryAt } = isExists[0];
+// 		}
+
+// 		if (expiryAt < Date.now()) {
+// 			UserVerification.deleteOne({ _id: userId });
+// 			console.log('Link has expired!!');
+// 		}
+// 	} catch (error) {
+// 		console.log(error);
+// 		res.status(400).json('error');
+// 	}
+
+// 	res.status(200).json('success');
+// });
+
 const verifyUser = asyncHandler(async (req, res) => {
 	const { userId, unio } = req?.params;
 
-	let isExists = await UserVerification.find({ userId });
- 
-	console.log('EXISTS::: ', isExists);
+	UserVerification.find({ userId })
+		.then((result) => {
+			if (result.length > 0) {
+				const { expiriesAt } = result[0];
 
-	if (isExists) {
-		console.log('an error occured');
-	}
+				const hashed = result[0].unio;
 
-	const { expiryAt } = isExists[0];
-	
+				if (expiriesAt < Date.now()) {
+					UserVerification.deleteOne({ _id: userId })
+						.then((result) => {
+							User.deleteOne({ userId })
+								.then(() => {
+									console.log(error);
+									let message = 'link expired';
+									res.redirect(
+										`/user/verified/error=true&message=${message}`
+									);
+								})
+								.catch((error) => {
+									console.log(error);
+									let message = 'user cleared';
+									res.redirect(
+										`/user/verified/error=true&message=${message}`
+									);
+								});
+						})
+						.catch((error) => {
+							console.log(error);
+							let message = 'an error occured';
+							res.redirect(
+								`/user/verified/error=true&message=${message}`
+							);
+						});
+				} else {
+					bcrypt
+						.compare(unio, hashed)
+						.then((result) => {
+							if (result) {
+								User.updateOne(
+									{ _id: userId },
+									{ verified: true }
+								)
+									.then(() => {
+										UserVerification.deleteOne({ userId })
+											.then(() => {
+												res.sendFile(
+													path.join(
+														__dirname,
+														'../views/verified.html'
+													)
+												);
+											})
+											.catch((error) => {
+												console.log(error);
+												let message =
+													'an error occured while deleting user record';
+												res.redirect(
+													`/user/verified/error=true&message=${message}`
+												);
+											});
+									})
+									.catch((error) => {
+										console.log(error);
+										let message =
+											'an error occured while updating our record';
+										res.redirect(
+											`/user/verified/error=true&message=${message}`
+										);
+									});
+							} else {
+								console.log(error);
+								let message = 'invalid verification details';
+								res.redirect(
+									`/user/verified/error=true&message=${message}`
+								);
+							}
+						})
+						.catch((error) => {
+							console.log(error);
+							let message =
+								'an error occured while comapring strings';
+							res.redirect(
+								`/user/verified/error=true&message=${message}`
+							);
+						});
+				}
+			} else {
+				let message = 'account does not exist';
+				res.redirect(`/user/verified/error=true&message=${message}`);
+			}
+		})
+		.catch(() => {
+			console.log(error);
+			let message =
+				'An error occured while checking for existing user verification record.';
+			res.redirect(`/user/verified/error=true&message=${message}`);
+		});
+});
 
-	try {
-		if (expiryAt < Date.now()) {
-			UserVerification.deleteOne({ _id: userId });
-		}
-	} catch (error) {
-		console.log(error)
-		res.status(400).json('error');
-	}
-
-	res.status(200).json('success');
+const verifyPageRoute = asyncHandler(async (req, res) => {
+	res.sendFile(path.join(__dirname, '../views/verified.html'));
 });
 
 const registerUser = asyncHandler(async (req, res) => {
@@ -146,6 +252,13 @@ const loginUser = asyncHandler(async (req, res) => {
 
 	const user = await User.findOne({ email });
 
+	if (user.length) {
+
+		if (user.verified) {
+
+		}
+	}
+
 	if (user && (await bcrypt.compare(password, user.password))) {
 		res.json({
 			_id: user.id,
@@ -171,6 +284,7 @@ const getUser = async (req, res) => {
 
 module.exports = {
 	verifyUser,
+	verifyPageRoute,
 	registerUser,
 	loginUser,
 	getUser,
