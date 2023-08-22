@@ -185,7 +185,7 @@ const verifyUser = asyncHandler(async (req, res) => {
 			}
 		})
 		.catch(() => {
-			console.log(error);
+			// console.log(error);
 			let message =
 				'An error occured while checking for existing user verification record.';
 			res.redirect(`/user/verified/error=true&message=${message}`);
