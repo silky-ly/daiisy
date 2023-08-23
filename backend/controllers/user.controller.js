@@ -12,7 +12,7 @@ let transporter = nodemailer.createTransport({
 	service: 'gmail',
 	auth: {
 		user: AUTH_EMAIL,
-		password: AUTH_PASSWORD,
+		pass: AUTH_PASSWORD,
 	},
 });
 
@@ -36,7 +36,7 @@ const sendVerificationEmail = ({ _id, email }, res) => {
 		text: 'verify. This email expires in 6 hours',
 		html: `<p>This link expires in 6 hours</p><a href=${
 			url + '/user/verify' + _id + '/' + unio
-		}></a>`,
+		}>click here to verify</a>`,
 	};
 
 	bcrypt
@@ -52,43 +52,23 @@ const sendVerificationEmail = ({ _id, email }, res) => {
 				transporter.sendMail(mailOptions);
 				res.status(200).json({
 					status: 'pending',
+					message: "verification email sent"
 				});
 			} else {
-				res.status(400);
-				throw new Error('verification email failed');
+				res.status(400).json({
+					status: 'failed',
+					message: "verification email could not be sent"
+				});
+				// throw new Error('verification email failed');
 			}
 		})
 		.catch(() => {
 			res.json({
 				status: 'failed',
+				message: "error occured"
 			});
 		});
 };
-
-// const verifyUser = asyncHandler(async (req, res) => {
-// 	const { userId, unio } = req?.params;
-
-// 	try {
-// 		let isExists = await UserVerification.find({ userId });
-
-// 		console.log('EXISTS::: ', isExists);
-
-// 		if (isExists.length > 0) {
-// 			console.log('an error occured');
-// 			const { expiryAt } = isExists[0];
-// 		}
-
-// 		if (expiryAt < Date.now()) {
-// 			UserVerification.deleteOne({ _id: userId });
-// 			console.log('Link has expired!!');
-// 		}
-// 	} catch (error) {
-// 		console.log(error);
-// 		res.status(400).json('error');
-// 	}
-
-// 	res.status(200).json('success');
-// });
 
 const verifyUser = asyncHandler(async (req, res) => {
 	const { userId, unio } = req?.params;
@@ -253,9 +233,10 @@ const loginUser = asyncHandler(async (req, res) => {
 	const user = await User.findOne({ email });
 
 	if (user.length) {
-
-		if (user.verified) {
-
+		if (!user.verified) {
+			res.json({
+				status: 'failed. user not verified. check inbox',
+			});
 		}
 	}
 
