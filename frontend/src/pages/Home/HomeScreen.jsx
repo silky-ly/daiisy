@@ -30,8 +30,12 @@ const HomeScreen = () => {
 	};
 
 	const ut = [
-		{ question: 'how well does this work?', answer: 'extraordinary' },
-		{ question: 'garfield?', answer: 'cat' },
+		{
+			_id: '1',
+			question: 'how well does this work?',
+			answer: 'extraordinary',
+		},
+		{ _id: '2', question: 'garfield', answer: 'cat' },
 	];
 
 	const onToggle = (index) => {

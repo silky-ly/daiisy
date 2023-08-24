@@ -22,52 +22,52 @@ const Shop = () => {
 		{
 			_id: '1',
 			question: 'shop all',
-			answer: [
-				'sale & offer',
-				'new arrival',
-				'best sellers',
-				'bundles',
-				'merch + tools',
-				'travel size',
-			],
+			// answer: [
+			// 	'sale & offer',
+			// 	'new arrival',
+			// 	'best sellers',
+			// 	'bundles',
+			// 	'merch + tools',
+			// 	'travel size',
+			// ],
 		},
-		{
-			_id: '2',
-			question: 'by concern',
-			answer: [
-				'all skin types',
-				'aging skin',
-				'acne-prone',
-				'dullness',
-				'dryness',
-			],
-		},
-		{
-			_id: '3',
-			question: 'by category',
-			answer: [
-				'facial cleansers',
-				'toners',
-				'serum',
-				'eye & lip care',
-				'mask & treatment',
-				'body care',
-				'moisturizers & spf',
-			],
-		},
-		{
-			_id: '4',
-			question: 'by ingredient',
-			answer: [
-				'retinol',
-				'salicylic acid',
-				'vitamin c',
-				'hyaluronic acid',
-				'niacinamide',
-				'vitamin e',
-				'lactic acid',
-			],
-		},
+		// {
+		// 	_id: '2',
+		// 	question: 'by concern',
+		// 	answer: [
+		// 		'all skin types',
+		// 		'aging skin',
+		// 		'acne-prone',
+		// 		'dullness',
+		// 		'dryness',
+		// 	],
+		// },
+		// {
+		// 	_id: '3',
+		// 	question: 'by category',
+		// 	answer: [
+		// 		'facial cleansers',
+		// 		'toners',
+		// 		'serum',
+		// 		'eye & lip care',
+		// 		'mask & treatment',
+		// 		'body care',
+		// 		'moisturizers & spf',
+		// 	],
+		// },
+		// {
+		// 	_id: '4',
+		// 	question: 'by ingredient',
+		// 	answer: [
+		// 		'retinol',
+		// 		'salicylic acid',
+		// 		'vitamin c',
+		// 		'hyaluronic acid',
+		// 		'niacinamide',
+		// 		'vitamin e',
+		// 		'lactic acid',
+		// 	],
+		// },
 	];
 
 	const addToCartHandler = (product) => {

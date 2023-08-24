@@ -42,7 +42,7 @@ const CheckOut = () => {
 				</h3>
 
 				<form className=''>
-					<select className='input' placeholder='Pick one'>
+					<select className='input mb-8' placeholder='Pick one'>
 						<option>u</option>
 						<option>w</option>
 						<option>f</option>
@@ -53,7 +53,7 @@ const CheckOut = () => {
 							type='text'
 							name='firstname'
 							placeholder='first name'
-							className='input'
+							className='input mb-8'
 						/>
 
 						<input
@@ -68,7 +68,7 @@ const CheckOut = () => {
 						type='text'
 						name='address'
 						placeholder='address'
-						className='input w-full'
+						className='input w-full mb-8'
 					/>
 
 					<div className='grid grid-cols-3 gap-3'>
@@ -76,10 +76,10 @@ const CheckOut = () => {
 							type='text'
 							name='address'
 							placeholder='address'
-							className='input'
+							className='input mb-8'
 						/>
 
-						<select className='input'>
+						<select className='input mb-8'>
 							<option>u</option>
 							<option>w</option>
 							<option>f</option>
@@ -89,7 +89,7 @@ const CheckOut = () => {
 							type='number'
 							name='zipcode'
 							placeholder='zip code'
-							className='input'
+							className='input mb-8'
 						/>
 					</div>
 
@@ -97,7 +97,7 @@ const CheckOut = () => {
 						type='number'
 						name='phonenumber'
 						placeholder='phone'
-						className='input w-full'
+						className='input w-full mb-8'
 					/>
 				</form>
 

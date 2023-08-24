@@ -1,5 +1,5 @@
 export const navs = [
-    { _id: '1', name: 'shop', path: '/shop' },
+    { _id: '1', name: 'shop', path: '/all' },
     { _id: '2', name: 'blog', path: '/blog' },
     { _id: '3', name: 'cart', path: '/cart' },
     { _id: '4', name: 'about', path: '/about' },
@@ -38,4 +38,20 @@ export const ingredients = [
 export const about = [
 	{ _id: '1', name: 'about us', path: '' },
 	{ _id: '2', name: 'our impact', path: '' },
+];
+
+export const types = [
+	{ id: '0', value: 'vas', label: 'Vas' },
+	{ id: '1', value: 'purchase', label: 'Purchase' },
+	{ id: '2', value: 'reversal', label: 'Reversal' },
+];
+
+export const handlers = [
+	{ id: '0', value: 'EPMS', label: 'EPMS' },
+	{ id: '1', value: 'POSVAS', label: 'POSVAS' },
+	{ id: '2', value: 'POSVAS_2', label: 'POSVAS_2' },
+	{ id: '3', value: 'MW-TAMS', label: 'MW-TAMS' },
+	{ id: '4', value: 'INTERSWITCH', label: 'INTERSWITCH' },
+	{ id: '5', value: 'UPSL', label: 'UPSL' },
+	{ id: '6', value: 'TAMS', label: 'TAMS' },
 ];
