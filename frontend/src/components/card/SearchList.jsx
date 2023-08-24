@@ -23,8 +23,11 @@ export const SearchInput = ({ search, products }) => {
 				}
 			>
 				<input
+					id='f'
 					className='input mb-0 uppercase text-xl tracking-wider bg-inherit border-0 border-b-2 border-black outline-0 placeholder:uppercase placeholder:tracking-wider placeholder:text-xl'
-					type='text'
+					type='search'
+					name='f'
+					// type='text'
 					value={field}
 					placeholder='search'
 					onChange={handleChange}

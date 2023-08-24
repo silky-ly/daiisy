@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Form, Link } from 'react-router-dom';
 import { Slip } from '../../components/card/Cards';
 import { EpArrowLeft } from '../../static/assets/svg/svg';
 import usePaystack from '../../hooks/usePaystack';
@@ -41,8 +41,8 @@ const CheckOut = () => {
 					shipping address
 				</h3>
 
-				<form className=''>
-					<select className='input mb-8' placeholder='Pick one'>
+				<Form className=''>
+					<select className='input checkout-input' placeholder='Pick one'>
 						<option>u</option>
 						<option>w</option>
 						<option>f</option>
@@ -53,14 +53,14 @@ const CheckOut = () => {
 							type='text'
 							name='firstname'
 							placeholder='first name'
-							className='input mb-8'
+							className='input checkout-input'
 						/>
 
 						<input
 							type='text'
 							name='lastname'
 							placeholder='last name'
-							className='input'
+							className='input checkout-input'
 						/>
 					</div>
 
@@ -68,7 +68,7 @@ const CheckOut = () => {
 						type='text'
 						name='address'
 						placeholder='address'
-						className='input w-full mb-8'
+						className='input w-full checkout-input'
 					/>
 
 					<div className='grid grid-cols-3 gap-3'>
@@ -76,10 +76,10 @@ const CheckOut = () => {
 							type='text'
 							name='address'
 							placeholder='address'
-							className='input mb-8'
+							className='input checkout-input'
 						/>
 
-						<select className='input mb-8'>
+						<select className='input checkout-input'>
 							<option>u</option>
 							<option>w</option>
 							<option>f</option>
@@ -89,7 +89,7 @@ const CheckOut = () => {
 							type='number'
 							name='zipcode'
 							placeholder='zip code'
-							className='input mb-8'
+							className='input checkout-input'
 						/>
 					</div>
 
@@ -97,9 +97,9 @@ const CheckOut = () => {
 						type='number'
 						name='phonenumber'
 						placeholder='phone'
-						className='input w-full mb-8'
+						className='input w-full checkout-input'
 					/>
-				</form>
+				</Form>
 
 				<div className='flex justify-between items-center'>
 					<Link

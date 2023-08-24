@@ -1,4 +1,3 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { store } from './app/store';
 import { Provider } from 'react-redux';
@@ -8,7 +7,6 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { getTotal } from './features/cart/cart.slice';
 import App from './App';
 import NotFound from './pages/errors/NotFound';
-import CheckOut from './pages/checkout/CheckOut';
 import Register from './pages/auth/Register';
 import Login from './pages/auth/Login';
 import Profile from './pages/profile/Profile';
@@ -16,6 +14,7 @@ import HomeScreen from './pages/Home/HomeScreen';
 import Shop from './pages/shop/Shop';
 import Product from './pages/Home/Product';
 import Cart from './pages/cart/Cart';
+import CheckOut from './pages/checkout/CheckOut';
 import './static/css/index.scss';
 
 const queryClient = new QueryClient();
@@ -40,7 +39,7 @@ const router = createBrowserRouter([
 				element: <Profile />,
 			},
 			{
-				path: 'home',
+				index: true,
 				element: <HomeScreen />,
 			},
 			{

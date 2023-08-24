@@ -133,6 +133,10 @@
 		@apply before:content-["_"] before:absolute before:w-full before:h-[0.5px] pb-1 before:bg-black before:left-0 before:bottom-0 before:origin-right before:scale-x-0 before:transition-transform before:duration-300 before:ease-in-out hover:before:origin-left hover:before:scale-x-100;
 	}
 
+	.checkout-input {
+		@apply h-[55px] mb-8;
+	}
+
 	// on-btn-animation {
 	// 	@apply;
 	// }
