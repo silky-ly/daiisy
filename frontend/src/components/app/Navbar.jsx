@@ -5,11 +5,14 @@ import Dropdown from '../dropdown/Dropdown';
 import { DropdownList } from '../dropdown/DropdownList';
 import { Bag, Profile, Search } from '../../static/assets/svg/svg';
 import { navs, all, categories, ingredients } from '../../data/dropdown';
+import { SearchInput, SearchList } from '../card/SearchList';
 
-const Header = () => {
+const Navbar = () => {
 	const { cartTotalQty } = useSelector((state) => state.cart);
 
 	const [hover, setHover] = useState(false);
+
+	const [search, setSearch] = useState(false);
 
 	return (
 		<>
@@ -64,8 +67,12 @@ const Header = () => {
 				</div>
 
 				<div className='w-1/12 flex justify-around items-center'>
-					<a href='/search' className='default-link'>
-						<Search />
+					<a
+						href='/search'
+						className='default-link'
+						onClick='onclick'
+					>
+						<Search width={15} height={15} />
 					</a>
 
 					<a href='/profile' className='default-link'>
@@ -80,8 +87,10 @@ const Header = () => {
 					</a>
 				</div>
 			</nav>
+
+			<SearchInput />
 		</>
 	);
 };
 
-export default Header;
+export default Navbar;

@@ -1,10 +1,10 @@
 import Footer from '../components/app/Footer';
-import Header from '../components/app/Header';
+import Navbar from '../components/app/Navbar';
 
 const Layout = ({ children }) => {
 	return (
 		<>
-			<Header />
+			<Navbar />
 			{children}
 			<Footer />
 		</>
