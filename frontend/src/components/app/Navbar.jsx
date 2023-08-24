@@ -1,21 +1,22 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Dropdown from '../dropdown/Dropdown';
-import { DropdownList } from '../dropdown/DropdownList';
+import { Dropdown, DropdownList } from '../dropdown/Dropdown';
 import { Bag, Profile, Search } from '../../static/assets/svg/svg';
 import { navs, all, categories, ingredients } from '../../data/dropdown';
-import { SearchInput, SearchList } from '../card/SearchList';
+import { SearchInput } from '../card/SearchList';
 
 const Navbar = () => {
 	const { cartTotalQty } = useSelector((state) => state.cart);
+
+	const { products } = useSelector((state) => state.products);
 
 	const [hover, setHover] = useState(false);
 
 	const [search, setSearch] = useState(false);
 
 	return (
-		<>
+		<section className='relative'>
 			<nav className='w-full m-auto px-24 bg-white flex justify-between h-[60px]'>
 				<div className='nav-wrap w-3/4 flex justify-between items-center'>
 					{navs.map((nav) => {
@@ -67,13 +68,13 @@ const Navbar = () => {
 				</div>
 
 				<div className='w-1/12 flex justify-around items-center'>
-					<a
-						href='/search'
+					<span
+						href=''
 						className='default-link'
-						onClick='onclick'
+						onClick={() => setSearch(!search)}
 					>
 						<Search width={15} height={15} />
-					</a>
+					</span>
 
 					<a href='/profile' className='default-link'>
 						<Profile />
@@ -88,8 +89,8 @@ const Navbar = () => {
 				</div>
 			</nav>
 
-			<SearchInput />
-		</>
+			{search && <SearchInput search={search} products={products} />}
+		</section>
 	);
 };
 

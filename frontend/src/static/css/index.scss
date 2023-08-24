@@ -117,10 +117,6 @@
 		@apply block text-xs leading-6;
 	}
 
-	.clicked {
-		@apply hidden;
-	}
-
 	.default-link {
 		@apply text-xs font-semibold cursor-pointer;
 	}

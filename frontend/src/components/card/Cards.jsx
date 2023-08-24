@@ -16,7 +16,7 @@ export const Card = ({ product, add }) => {
 						{product.name}
 					</p>
 
-					<p className=' text-xs font-semibold uppercase tracking-wide leading-6 font-opposit'>
+					<p className='text-xs font-semibold uppercase tracking-wide leading-6 font-opposit'>
 						{`$ ${product.price}`}
 					</p>
 				</div>
@@ -48,6 +48,27 @@ export const Slip = () => {
 			</p>
 
 			<p className=' text-sm font-bold font-jetbrains'>$9.99</p>
+		</div>
+	);
+};
+
+export const SearchCard = ({ product }) => {
+	return (
+		<div
+			className='mb-6 flex justify-between items-center gap-2'
+			key={product._id}
+		>
+			<img src={lip} className='w-[60px] h-[60px]' />
+
+			<div className='flex flex-col w-4/5'>
+				<p className='text-xs font-semibold uppercase tracking-tight leading-6 font-jetbrains'>
+					versed lips
+				</p>
+
+				<p className='text-xs font-normal font-jetbrain uppercase tracking-wide leading-6'>
+					$9.99
+				</p>
+			</div>
 		</div>
 	);
 };
